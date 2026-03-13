@@ -33,8 +33,8 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
     .nav-links a:hover { color: var(--ink); }
-    .nav-resume { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper); background: var(--accent); padding: 6px 14px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
-    .nav-resume:hover { background: #A83509; color: var(--paper) !important; }
+    .nav-resume { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.03em; color: var(--paper); background: var(--ink); padding: 6px 16px; border-radius: 100px; text-decoration: none; transition: all 0.2s; }
+    .nav-resume:hover { background: var(--accent); color: var(--paper) !important; }
 
     /* MASTHEAD */
     .masthead { padding: 6rem 2rem 4rem; border-bottom: 2px solid var(--ink); }
@@ -179,8 +179,9 @@
     .resume-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .resume-text-block .resume-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
     .resume-text-block .resume-headline { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.2px; }
-    .resume-download { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--paper); background: var(--ink); display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 2px; border: 1px solid var(--ink); transition: all 0.15s; white-space: nowrap; }
-    .resume-download:hover { background: var(--ink-mid); }
+    .resume-download { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.03em; text-transform: none; text-decoration: none; color: var(--paper); background: var(--ink); display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 100px; border: none; transition: all 0.2s; white-space: nowrap; cursor: pointer; }
+    .resume-download:hover { background: var(--accent); transform: translateY(-1px); }
+    .resume-download:active { transform: translateY(0); }
 
     /* CONTACT */
     #contact { background: var(--ink); }
@@ -213,16 +214,48 @@
     .resume-send-btn:hover { background: var(--ink-mid); }
     .resume-note { font-family: var(--sans); font-size: 11px; color: var(--faint); text-align: center; margin-top: 10px; font-style: italic; }
 
-    footer { background: var(--ink); border-top: 1px solid #2A2010; text-align: center; padding: 1.5rem; font-family: var(--sans); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #4A3E28; }
+    /* INLINE CTAs */
+    .inline-cta { padding: 2.5rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-top: 1px solid var(--rule); }
+    .inline-cta-text { font-family: var(--body); font-style: italic; font-size: 16px; color: var(--ink-mid); line-height: 1.6; max-width: 480px; }
+    .inline-cta-text strong { font-style: normal; color: var(--ink); font-weight: 600; }
+    .inline-cta-btn { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--paper); background: var(--ink); display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 100px; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; text-decoration: none; }
+    .inline-cta-btn:hover { background: var(--accent); transform: translateY(-1px); }
+    .inline-cta-btn:active { transform: translateY(0); }
+    @media (max-width: 600px) {
+      .inline-cta { flex-direction: column; align-items: flex-start; padding: 2rem 1.25rem; }
+      .inline-cta-btn { width: 100%; justify-content: center; }
+    } background: var(--ink); border-top: 1px solid #2A2010; text-align: center; padding: 1.5rem; font-family: var(--sans); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #4A3E28; }
 
     /* FADE */
     .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade.in { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVE */
+    /* HAMBURGER */
+    .hamburger { display: none; width: 36px; height: 36px; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 0; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.25s; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { position: fixed; inset: 0; background: var(--paper); z-index: 99; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-family: var(--display); font-size: 32px; font-weight: 700; color: var(--ink); text-decoration: none; padding: 14px 0; letter-spacing: -0.5px; border-bottom: 1px solid var(--rule); width: 80%; text-align: center; transition: color 0.15s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .menu-resume { color: var(--accent); font-style: italic; }
+
+    /* RESPONSIVE — TABLET (iPad) */
+    @media (max-width: 900px) {
+      .masthead-grid { grid-template-columns: 1fr 160px; gap: 2rem; }
+      .masthead-name { font-size: clamp(44px, 7vw, 72px); }
+      .chapter-right { gap: 4px; }
+      .company-logo { height: 18px; }
+    }
+
+    /* RESPONSIVE — MOBILE */
     @media (max-width: 600px) {
       .masthead-grid { grid-template-columns: 1fr; }
-      .photo-frame { width: 120px; height: 140px; }
+      .masthead-name { letter-spacing: -2px; }
+      .photo-frame { width: 100px; height: 120px; order: -1; margin-bottom: 1rem; }
       .stat-rule-inner { flex-wrap: wrap; gap: 1rem; }
       .stat-item { border-right: none; flex: none; width: 45%; padding: 0; text-align: left; }
       .chapter-right { display: none; }
@@ -230,10 +263,18 @@
       .project-meta, .blog-meta { display: none; }
       .edu-row { grid-template-columns: 1fr; gap: 1.5rem; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       section { padding: 3rem 1.25rem; }
       .masthead { padding: 5rem 1.25rem 3rem; }
       .blog-post { padding: 2rem 1.25rem 3rem; }
       .resume-inner { flex-direction: column; align-items: flex-start; }
+      .resume-modal { padding: 1.5rem; }
+      .resume-modal-title { font-size: 20px; }
+      .contact-links { flex-direction: column; }
+      .clink { justify-content: center; }
+      .skills-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .chapter-nums { gap: 1.5rem; }
+      .masthead-byline { gap: 1rem; }
     }
   </style>
 </head>
@@ -241,7 +282,7 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Gaurav Kishore</a>
+    <a href="#" class="nav-logo">My Portfolio</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Story</a></li>
@@ -249,26 +290,39 @@
       <li><a href="#blog">Writing</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#" onclick="openResumeModal();return false;" class="nav-resume">Resume ↓</a></li>
+      <li><a href="#" onclick="openResumeModal();return false;" class="nav-resume" style="display:inline-flex;align-items:center;gap:5px;"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Resume</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#experience" onclick="closeMenu()">Story</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#blog" onclick="closeMenu()">Writing</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#" class="menu-resume" onclick="closeMenu();openResumeModal();return false;">Request Resume</a>
+</div>
 
 <!-- MASTHEAD -->
 <div class="masthead">
   <div class="masthead-inner">
-    <div class="masthead-kicker">Senior Product Manager · Bengaluru, India · 2025</div>
     <div class="masthead-grid">
       <div>
         <h1 class="masthead-name">Gaurav<br>Kishore</h1>
-        <p class="masthead-deck">"I've spent my career turning messy growth problems into clean product decisions — across telecom, ecommerce, and now AI."</p>
+        <p class="masthead-deck">"I've spent my career turning unstructured growth problems into clean product decisions — across telecom, ecommerce, and now AI."</p>
         <div class="masthead-byline">
-          <a href="/cdn-cgi/l/email-protection#5f383e2a2d3e296d6f6d34362c37302d3a1f38323e3633713c3032">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span class="__cf_email__" data-cfemail="90f7f1e5e2f1e6a2a0a2fbf9e3f8ffe2f5d0f7fdf1f9fcbef3fffd">[email&#160;protected]</span>
-          </a>
+          <span style="color:var(--muted);font-family:var(--sans);font-size:12px;display:inline-flex;align-items:center;gap:4px;">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Senior Product Manager · Bengaluru
+          </span>
           <a href="https://www.linkedin.com/in/gaurav202kishore" target="_blank">
-            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
           <a href="https://github.com/gaurav404kishore-max" target="_blank">
@@ -287,7 +341,6 @@
 <!-- STAT RULE -->
 <div class="stat-rule fade">
   <div class="stat-rule-inner">
-    <div class="stat-item"><div class="stat-n">5+</div><div class="stat-l">Years in product</div></div>
     <div class="stat-item"><div class="stat-n">$60M+</div><div class="stat-l">Revenue influenced</div></div>
     <div class="stat-item"><div class="stat-n">30+</div><div class="stat-l">Experiments shipped</div></div>
     <div class="stat-item"><div class="stat-n">1,000+</div><div class="stat-l">Platform users scaled</div></div>
@@ -299,7 +352,7 @@
   <div class="inner">
     <div class="section-head fade"><span class="section-label">About</span><span class="section-rule"></span></div>
     <div class="about-body fade">
-      <p class="about-para">I'm a Consumer and Growth PM, based in Bengaluru — though I grew up in Ranchi, where the hills were always close. Over five years, I've had the opportunity to work across some of India's most demanding product environments — Swiggy, Airtel, a multi-market ecommerce business, and now a global AI platform at AB InBev.</p>
+      <p class="about-para">I'm a Consumer and Growth PM, based in Bengaluru — though I grew up in Ranchi, where the hills were always close. I've worked across some of India's most demanding product environments — Swiggy, Airtel, a multi-market ecommerce business, and now a global AI platform at AB InBev.</p>
       <p class="about-para">I tend to stay in the problem longer than most people are comfortable with. Not because I'm slow, but because I've found that most product decisions go wrong not at the execution stage, but much earlier — when the problem itself wasn't understood well enough. Solutions come in versions. The right problem, if you've found it, tends to stay constant.</p>
       <p class="about-para">Outside of work, I still find myself drawn to the mountains when I can.</p>
     </div>
@@ -336,14 +389,7 @@
           See full details
         </button>
         <div class="chapter-details">
-          <ul class="detail-list">
-            <li>Drove 7× DAU and 2.5× AOV growth in the grocery category through merchandising experiments and pricing strategy</li>
-            <li>Revamped homepage discovery experience — add-to-cart up 46%, engagement CTR up 11%</li>
-            <li>Built brand monetisation products including offers, merchandising, and sampling, contributing 3% to overall revenue</li>
-            <li>Scaled catalogue from 300 to 5,000+ SKUs across 6 cities by rebuilding the vendor catalogue platform</li>
-            <li>Improved search relevance and ranking algorithms — add-to-cart up 31%, discovery CTR improved by 3.5 ranks</li>
-            <li>Built demand shaping platforms to handle COVID-era traffic spikes, increasing revenue by 15%</li>
-          </ul>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">The work was scrappy and fast. I rebuilt the homepage discovery experience from scratch, pushed add-to-cart up 46%, and scaled the catalogue from 300 to 5,000+ SKUs across six cities. On the monetisation side, I built Swiggy's brand partnership products — offers, sampling, in-app placements — which grew to contribute 3% of overall grocery revenue. When COVID hit and traffic spiked unpredictably, I shipped demand-shaping infrastructure that kept the business from buckling under its own growth. By the time I left, DAU had grown 7× and average order value had more than doubled.</p>
           <div class="chapter-tags"><span class="ctag">Consumer growth</span><span class="ctag">Merchandising</span><span class="ctag">Search & discovery</span><span class="ctag">Experimentation</span></div>
         </div>
       </div>
@@ -374,15 +420,7 @@
           See full details
         </button>
         <div class="chapter-details">
-          <ul class="detail-list">
-            <li>Built Airtel's CLM platform integrating C360, Airtel IQ, Salesforce, and provisioning systems from the ground up</li>
-            <li>Increased app activation 2.3× and early recharges by 27% through behavioral nudges and usage-triggered onboarding</li>
-            <li>Reduced port-in drop-offs by 31% via WhatsApp-led guided onboarding journeys</li>
-            <li>Boosted broadband install conversion by 20% and cut SLA breaches by 44% through automated tracking and escalation</li>
-            <li>Productized campaign templates — reducing go-live time by 70% for cross-functional teams</li>
-            <li>Developed ML models for identifying at-risk cohorts, reducing churn by 20%</li>
-            <li>Managed $150K budget, reducing expenses by 15% and achieving 20% higher ROI</li>
-          </ul>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">I built Airtel's CLM platform from the ground up — integrating C360, Airtel IQ, Salesforce, and provisioning systems into a single lifecycle engine. The onboarding work was particularly meaningful: a WhatsApp-led port-in journey reduced drop-offs by 31%, and behavioral nudges pushed app activation up 2.3× with early recharges improving 27%. I also built the campaign template system that cut go-live time by 70%, turning what used to be a two-week process into hours. On retention, ML models identifying at-risk cohorts helped bring churn down 20%. Managed a $150K budget throughout with 20% higher ROI than target.</p>
           <div class="chapter-tags"><span class="ctag">CLM platforms</span><span class="ctag">0 to 1 build</span><span class="ctag">Lifecycle growth</span><span class="ctag">Retention</span></div>
         </div>
       </div>
@@ -413,15 +451,7 @@
           See full details
         </button>
         <div class="chapter-details">
-          <ul class="detail-list">
-            <li>Led Insurance revenue stream for Coversandall.com across multiple countries — $500K in 60 days with 42% adoption</li>
-            <li>Redesigned product page customisation journey, increasing ATC by 9% and reducing drop-off by 29%</li>
-            <li>Ran 30+ A/B and multivariate experiments improving conversion 9% YoY across PDP, checkout, and discovery</li>
-            <li>Integrated Stripe payment intent and additional payment methods — cart-to-checkout improved by 45%</li>
-            <li>Spearheaded AI Agent-powered content automation, driving 23% more engagement on PDPs</li>
-            <li>Improved NPS by 12% and reduced customer effort score by 25% across pre-post purchase journeys</li>
-            <li>Implemented personalisation and search ranking improvements, increasing product discovery efficiency by 23%</li>
-          </ul>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">The scope here was broader than anything I'd done before. Across acquisition, activation, and monetisation, I ran 30+ A/B and multivariate experiments that improved conversion 9% year-on-year. The checkout work was the most impactful — integrating Stripe payment intent and additional payment methods pushed cart-to-checkout up 45%. I also launched an insurance revenue stream for Coversandall.com across multiple countries, hitting $500K in 60 days with 42% product adoption. Toward the end of my time here, I led AI Agent-powered content automation that drove 23% more engagement on product pages — an early signal of where the industry was heading.</p>
           <div class="chapter-tags"><span class="ctag">Revenue ownership</span><span class="ctag">Multi-market</span><span class="ctag">Conversion optimisation</span><span class="ctag">AI automation</span></div>
         </div>
       </div>
@@ -452,12 +482,7 @@
           See full details
         </button>
         <div class="chapter-details">
-          <ul class="detail-list">
-            <li>Led product strategy for a GenAI-powered experimentation platform across 1,000+ global users</li>
-            <li>Launched LLM-based test generation and failure diagnostics, reducing experiment time by 70%</li>
-            <li>Built self-serve experiment workflows scaling adoption from 100 to 1,000 users in 3 months</li>
-            <li>Partnered with engineering and data teams to establish experimentation governance and AI evaluation workflows</li>
-          </ul>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">The platform started small — a handful of teams, a narrow use case. Within three months of launching self-serve experiment workflows, adoption went from 100 to 1,000+ users globally. The core product insight was simple: most people don't run experiments because the setup is too slow and the diagnostics too opaque. We solved both — LLM-based test generation cut experiment time by 70%, and automated failure diagnostics meant teams could learn and iterate without needing a data scientist in the room. This is still the current chapter, and the most technically ambitious work I've done.</p>
           <div class="chapter-tags"><span class="ctag">GenAI</span><span class="ctag">LLMs</span><span class="ctag">Experimentation platforms</span><span class="ctag">Enterprise SaaS</span></div>
         </div>
       </div>
@@ -483,10 +508,10 @@
       </div>
       <div class="project-row fade">
         <div>
-          <div class="project-status">Building</div>
+          <div class="project-status">Live</div>
           <div class="project-name">Clear Notes — Dead-simple Notes & Reminders</div>
-          <div class="project-desc">A notes app with zero clutter. No folders, no tags, no friction. Write it down, get reminded. Built for people who find other apps overwhelming.</div>
-          <span class="project-link-muted">Coming soon</span>
+          <div class="project-desc">A notes app with zero clutter. No folders, no tags, no friction. Write it down, get reminded. Biometric login, colour-coded cards, overdue reminders. Built for people who find other apps overwhelming.</div>
+          <a href="https://clear-notes.netlify.app" target="_blank" rel="noopener" class="project-link">View project →</a>
         </div>
         <div class="project-meta">
           <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
@@ -507,6 +532,15 @@
   </div>
 </section>
 
+<!-- CTA after projects -->
+<div class="inline-cta fade" style="background:var(--paper); max-width:var(--max); margin:0 auto;">
+  <p class="inline-cta-text">I build things to solve real problems — at work and on weekends. <strong>If that sounds like someone you'd want on your team,</strong> let's talk.</p>
+  <button onclick="openResumeModal()" class="inline-cta-btn">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+    Get my resume
+  </button>
+</div>
+
 <!-- BLOG -->
 <section id="blog">
   <div class="inner">
@@ -524,6 +558,19 @@
     </div>
   </div>
 </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA after blog -->
+<div class="inline-cta fade" style="background:var(--paper-dark); max-width:var(--max); margin:0 auto;">
+  <p class="inline-cta-text">Writing is how I think out loud. <strong>If something here resonated,</strong> I'd love to continue the conversation.</p>
+  <button onclick="openResumeModal()" class="inline-cta-btn">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    Reach out
+  </button>
+</div>
 
 <!-- BLOG POST MODAL -->
 <div class="blog-overlay" id="blogOverlay" onclick="closePostOnBg(event)">
@@ -595,7 +642,10 @@
     <div class="section-head fade"><span class="section-label">The toolkit</span><span class="section-rule"></span></div>
     <div class="skills-grid">
       <div class="fade">
-        <div class="skill-col-title">Product craft</div>
+        <div class="skill-col-title" style="display:flex;align-items:center;gap:6px;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Product craft
+        </div>
         <div class="skill-items">
           <span class="skill-item">Strategy & roadmapping</span>
           <span class="skill-item">User research</span>
@@ -605,7 +655,10 @@
         </div>
       </div>
       <div class="fade">
-        <div class="skill-col-title">Growth & experimentation</div>
+        <div class="skill-col-title" style="display:flex;align-items:center;gap:6px;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Growth & experimentation
+        </div>
         <div class="skill-items">
           <span class="skill-item">A/B & multivariate testing</span>
           <span class="skill-item">Acquisition & retention</span>
@@ -615,7 +668,10 @@
         </div>
       </div>
       <div class="fade">
-        <div class="skill-col-title">Data & analytics</div>
+        <div class="skill-col-title" style="display:flex;align-items:center;gap:6px;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Data & analytics
+        </div>
         <div class="skill-items">
           <span class="skill-item">SQL</span>
           <span class="skill-item">Tableau / Power BI</span>
@@ -625,7 +681,10 @@
         </div>
       </div>
       <div class="fade">
-        <div class="skill-col-title">AI & building</div>
+        <div class="skill-col-title" style="display:flex;align-items:center;gap:6px;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+          AI & building
+        </div>
         <div class="skill-items">
           <span class="skill-item">GenAI / LLMs</span>
           <span class="skill-item">Prompt engineering</span>
@@ -644,12 +703,18 @@
     <div class="section-head fade"><span class="section-label">Foundation</span><span class="section-rule"></span></div>
     <div class="edu-row fade">
       <div>
-        <div class="edu-year">2021</div>
+        <div class="edu-year" style="display:flex;align-items:center;gap:5px;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          2021
+        </div>
         <div class="edu-degree">MBA</div>
         <div class="edu-school">Indian Institute of Management (IIM), Nagpur</div>
       </div>
       <div>
-        <div class="edu-year">2019</div>
+        <div class="edu-year" style="display:flex;align-items:center;gap:5px;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          2019
+        </div>
         <div class="edu-degree">B.Tech, Industrial Engineering</div>
         <div class="edu-school">BIT Sindri, Dhanbad</div>
       </div>
@@ -665,8 +730,8 @@
       <div class="resume-headline">Five years, four companies, one document.</div>
     </div>
     <button onclick="openResumeModal()" class="resume-download">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Request Resume
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+      Get my resume
     </button>
   </div>
 </div>
@@ -693,9 +758,21 @@
   </div>
 </section>
 
-<footer>Gaurav Kishore · Built with intent · 2026</footer>
+<footer>Gaurav Kishore · Built with intent · 2026 · <a href="mailto:gaurav202kishore@gmail.com" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'">gaurav202kishore@gmail.com</a></footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleMenu() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobile-menu');
+    h.classList.toggle('open');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
   function toggleChapter(head) {
     const body = head.nextElementSibling;
     const toggle = head.querySelector('.chapter-toggle');
@@ -721,14 +798,21 @@
     document.body.style.overflow = '';
   }
   function closePostOnBg(e) {
-    if (e.target === document.getElementById('blogOverlay')) c
+    if (e.target === document.getElementById('blogOverlay')) closePost();
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 80); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
 <!-- RESUME MODAL -->
 <div class="resume-modal-overlay" id="resume-modal-overlay" onclick="closeResumeOnBg(event)">
   <div class="resume-modal">
     <button class="resume-modal-close" onclick="closeResumeModal()">×</button>
     <div class="resume-modal-eyebrow">Resume request</div>
     <div class="resume-modal-title">I'll send it<br>directly to you.</div>
-    <div class="resume-modal-body">I prefer sharing my resume personally rather than leaving it as a public download. Drop your email below and I'll send it across — usually within a day.</div>
+    <div class="resume-modal-body">I prefer sharing my resume personally rather than leaving it as a public download. Drop your email below and I'll send it across — usually within an hour.</div>
     <label class="resume-email-label" for="requester-email">Your email address</label>
     <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
     <div class="resume-preview">
@@ -774,3 +858,6 @@
     setTimeout(closeResumeModal, 1000);
   }
 </script>
+
+</body>
+</html>
