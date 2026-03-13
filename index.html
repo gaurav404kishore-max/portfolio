@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaurav Kishore — Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper: #F7F1E8;
+      --paper-dark: #EDE4D4;
+      --ink: #1A1408;
+      --ink-mid: #3D3520;
+      --muted: #7A6E58;
+      --faint: #8C8270;
+      --rule: #C8BEA8;
+      --accent: #C2410C;
+      --accent-pale: #FBF0E8;
+      --display: 'Playfair Display', Georgia, serif;
+      --body: 'Source Serif 4', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --max: 860px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 16px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(247,241,232,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 2rem; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: 0.2px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-resume { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper); background: var(--accent); padding: 6px 14px; border-radius: 2px; text-decoration: none; transition: background 0.15s; }
+    .nav-resume:hover { background: #A83509; color: var(--paper) !important; }
+
+    /* MASTHEAD */
+    .masthead { padding: 6rem 2rem 4rem; border-bottom: 2px solid var(--ink); }
+    .masthead-inner { max-width: var(--max); margin: 0 auto; }
+    .masthead-kicker { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+    .masthead-kicker::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+    .masthead-grid { display: grid; grid-template-columns: 1fr 200px; gap: 4rem; align-items: end; }
+    .masthead-name { font-family: var(--display); font-size: clamp(52px, 8vw, 88px); font-weight: 800; line-height: 0.95; letter-spacing: -3px; color: var(--ink); margin-bottom: 1.5rem; }
+    .masthead-deck { font-family: var(--body); font-size: 18px; font-style: italic; color: var(--ink-mid); line-height: 1.65; max-width: 500px; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .masthead-byline { font-family: var(--sans); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+    .masthead-byline a { color: var(--muted); text-decoration: none; transition: color 0.15s; display: inline-flex; align-items: center; gap: 5px; }
+    .masthead-byline a:hover { color: var(--accent); }
+    .photo-frame { width: 180px; height: 210px; overflow: hidden; border-radius: 4px; border: 1px solid var(--rule); align-self: end; }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: sepia(15%) contrast(1.05); }
+
+    /* STAT RULE */
+    .stat-rule { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 1.25rem 2rem; background: var(--paper-dark); }
+    .stat-rule-inner { max-width: var(--max); margin: 0 auto; display: flex; }
+    .stat-item { flex: 1; padding: 0 1.5rem; border-right: 1px solid var(--rule); text-align: center; }
+    .stat-item:first-child { padding-left: 0; text-align: left; }
+    .stat-item:last-child { border-right: none; }
+    .stat-n { font-family: var(--display); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; }
+    .stat-l { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+
+    /* SECTIONS */
+    section { padding: 4.5rem 2rem; }
+    .inner { max-width: var(--max); margin: 0 auto; }
+    .section-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; }
+    .section-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .section-rule { flex: 1; height: 1px; background: var(--rule); }
+
+    /* ABOUT */
+    #about { background: var(--paper-dark); }
+    .about-body { max-width: 620px; }
+    .about-para { font-family: var(--body); font-size: 17px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 1.25rem; }
+    .about-para:last-child { margin-bottom: 0; }
+
+    /* CHAPTERS */
+    #experience { background: var(--paper); }
+    .chapter { border-top: 1px solid var(--rule); }
+    .chapter:last-child { border-bottom: 1px solid var(--rule); }
+    .chapter-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.75rem 0; cursor: pointer; user-select: none; }
+    .chapter-head:hover .chapter-role { color: var(--accent); }
+    .chapter-left { flex: 1; }
+    .chapter-num { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+    .chapter-role { font-family: var(--display); font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.25; letter-spacing: -0.2px; transition: color 0.15s; }
+    .chapter-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+    .chapter-period { font-family: var(--sans); font-size: 11px; color: var(--faint); }
+    .chapter-toggle { font-family: var(--sans); font-size: 20px; color: var(--rule); transition: transform 0.25s, color 0.15s; line-height: 1; }
+    .chapter-head:hover .chapter-toggle { color: var(--accent); }
+    .chapter-toggle.open { transform: rotate(45deg); color: var(--accent); }
+
+    /* COMPANY LOGOS */
+    .company-logo { height: 24px; width: auto; display: block; object-fit: contain; }
+    .company-logo-light { opacity: 0.85; }
+    .company-logo-dark { mix-blend-mode: multiply; opacity: 0.9; border-radius: 2px; }
+    .company-logo-text { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink-mid); }
+
+    .chapter-body { display: none; padding-bottom: 2rem; }
+    .chapter-body.open { display: block; animation: fadeUp 0.3s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .chapter-narrative { font-family: var(--body); font-style: italic; font-size: 16px; color: var(--ink-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+    .chapter-nums { display: flex; gap: 2.5rem; flex-wrap: wrap; padding: 1.25rem 0; border-top: 1px solid var(--paper-dark); border-bottom: 1px solid var(--paper-dark); margin-bottom: 1.25rem; }
+    .cn { display: flex; flex-direction: column; }
+    .cn-n { font-family: var(--display); font-size: 24px; font-weight: 700; color: var(--ink); line-height: 1; }
+    .cn-l { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+    .detail-toggle { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--accent); background: none; border: none; cursor: pointer; padding: 0; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+    .detail-toggle svg { transition: transform 0.2s; }
+    .detail-toggle.open svg { transform: rotate(90deg); }
+    .chapter-details { display: none; margin-top: 1.25rem; }
+    .chapter-details.open { display: block; animation: fadeUp 0.25s ease; }
+    .detail-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 1.25rem; }
+    .detail-list li { font-family: var(--sans); font-size: 13px; color: var(--ink-mid); padding-left: 1.25rem; position: relative; line-height: 1.65; }
+    .detail-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .chapter-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ctag { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; background: var(--paper-dark); color: var(--muted); border: 1px solid var(--rule); }
+
+    /* PROJECTS */
+    #projects { background: var(--paper-dark); }
+    .projects-list { display: flex; flex-direction: column; }
+    .project-row { display: grid; grid-template-columns: 3fr 1fr; gap: 2rem; padding: 1.75rem 0; border-top: 1px solid var(--rule); align-items: start; }
+    .project-row:last-child { border-bottom: 1px solid var(--rule); }
+    .project-status { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .project-name { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.2px; }
+    .project-desc { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); line-height: 1.65; }
+    .project-link { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; letter-spacing: 0.02em; transition: gap 0.15s; }
+    .project-link:hover { gap: 7px; }
+    .project-link-muted { font-family: var(--sans); font-size: 12px; color: var(--faint); margin-top: 10px; display: inline-block; font-style: italic; }
+    .project-pills { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+    .ppill { font-family: var(--sans); font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* BLOG */
+    #blog { background: var(--paper); }
+    .blog-list { display: flex; flex-direction: column; }
+    .blog-row { display: grid; grid-template-columns: 1fr auto; gap: 2rem; padding: 1.75rem 0; border-top: 1px solid var(--rule); align-items: start; cursor: pointer; }
+    .blog-row:last-child { border-bottom: 1px solid var(--rule); }
+    .blog-row:hover .blog-title { color: var(--accent); }
+    .blog-tag { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .blog-title { font-family: var(--display); font-size: 20px; font-weight: 700; color: var(--ink); line-height: 1.3; letter-spacing: -0.2px; transition: color 0.15s; margin-bottom: 8px; }
+    .blog-excerpt { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); line-height: 1.65; max-width: 580px; }
+    .blog-meta { font-family: var(--sans); font-size: 11px; color: var(--faint); white-space: nowrap; padding-top: 4px; }
+    .blog-read { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--accent); margin-top: 10px; display: inline-flex; align-items: center; gap: 4px; }
+
+    /* BLOG POST MODAL */
+    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+    .blog-overlay.open { display: flex; }
+    .blog-post { background: var(--paper); max-width: 680px; width: 100%; border-radius: 4px; padding: 3rem 3rem 4rem; margin: auto; position: relative; }
+    .blog-post-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--muted); line-height: 1; font-family: var(--sans); }
+    .blog-post-close:hover { color: var(--ink); }
+    .blog-post-tag { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .blog-post-title { font-family: var(--display); font-size: clamp(24px, 4vw, 34px); font-weight: 800; color: var(--ink); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+    .blog-post-byline { font-family: var(--sans); font-size: 12px; color: var(--muted); margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+    .blog-post-body { font-family: var(--body); font-size: 17px; color: var(--ink-mid); line-height: 1.85; }
+    .blog-post-body h2 { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--ink); margin: 2.5rem 0 0.75rem; letter-spacing: -0.2px; }
+    .blog-post-body p { margin-bottom: 1.25rem; }
+    .blog-post-body ul { list-style: none; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+    .blog-post-body ul li { padding-left: 1.25rem; position: relative; }
+    .blog-post-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+    .blog-post-body .callout { border-left: 3px solid var(--accent); padding-left: 1.25rem; font-style: italic; color: var(--ink); margin: 2rem 0; }
+    .blog-post-body .step { background: var(--paper-dark); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+    .blog-post-body .step-num { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .blog-post-body .step-title { font-family: var(--display); font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .blog-post-body .step p { font-size: 15px; margin-bottom: 0; }
+
+    /* SKILLS */
+    #skills { background: var(--paper-dark); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+    .skill-col-title { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+    .skill-items { display: flex; flex-direction: column; gap: 6px; }
+    .skill-item { font-family: var(--body); font-size: 14px; color: var(--ink-mid); }
+
+    /* EDUCATION */
+    #education { background: var(--paper); }
+    .edu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .edu-year { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .edu-degree { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .edu-school { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); }
+
+    /* RESUME */
+    #resume-section { background: var(--paper-dark); padding: 3rem 2rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .resume-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .resume-text-block .resume-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .resume-text-block .resume-headline { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.2px; }
+    .resume-download { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--paper); background: var(--ink); display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 2px; border: 1px solid var(--ink); transition: all 0.15s; white-space: nowrap; }
+    .resume-download:hover { background: var(--ink-mid); }
+
+    /* CONTACT */
+    #contact { background: var(--ink); }
+    #contact .section-label { color: #6B6044; }
+    #contact .section-rule { background: #3D3520; }
+    .contact-deck { font-family: var(--display); font-size: clamp(22px, 4vw, 32px); font-weight: 700; font-style: italic; color: var(--paper); line-height: 1.35; margin-bottom: 2rem; letter-spacing: -0.3px; max-width: 520px; }
+    .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .clink { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--paper); display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border: 1px solid #3D3520; border-radius: 2px; transition: all 0.15s; }
+    .clink:hover { background: var(--ink-mid); border-color: var(--muted); }
+    .clink.primary { background: var(--accent); border-color: var(--accent); }
+    .clink.primary:hover { background: #A83509; border-color: #A83509; }
+
+    /* RESUME MODAL */
+    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .resume-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .resume-modal { background: var(--paper); max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--rule); padding: 2rem; transform: translateY(16px); transition: transform 0.25s; }
+    .resume-modal-overlay.open .resume-modal { transform: translateY(0); }
+    .resume-modal-close { float: right; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--muted); line-height: 1; margin-top: -4px; }
+    .resume-modal-close:hover { color: var(--ink); }
+    .resume-modal-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .resume-modal-title { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; margin-bottom: 10px; line-height: 1.2; }
+    .resume-modal-body { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+    .resume-email-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block; }
+    .resume-email-input { width: 100%; background: var(--paper-dark); border: 1px solid var(--rule); border-radius: 4px; padding: 10px 14px; font-family: var(--sans); font-size: 14px; color: var(--ink); margin-bottom: 10px; }
+    .resume-email-input:focus { outline: none; border-color: var(--muted); }
+    .resume-preview { background: var(--paper-dark); border: 1px solid var(--rule); border-radius: 4px; padding: 12px 14px; margin-bottom: 1.25rem; }
+    .resume-preview-label { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
+    .resume-preview-text { font-family: var(--body); font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+    .resume-send-btn { width: 100%; background: var(--ink); color: var(--paper); border: none; border-radius: 4px; padding: 12px; font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .resume-send-btn:hover { background: var(--ink-mid); }
+    .resume-note { font-family: var(--sans); font-size: 11px; color: var(--faint); text-align: center; margin-top: 10px; font-style: italic; }
+
+    footer { background: var(--ink); border-top: 1px solid #2A2010; text-align: center; padding: 1.5rem; font-family: var(--sans); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #4A3E28; }
+
+    /* FADE */
+    .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade.in { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .masthead-grid { grid-template-columns: 1fr; }
+      .photo-frame { width: 120px; height: 140px; }
+      .stat-rule-inner { flex-wrap: wrap; gap: 1rem; }
+      .stat-item { border-right: none; flex: none; width: 45%; padding: 0; text-align: left; }
+      .chapter-right { display: none; }
+      .project-row, .blog-row { grid-template-columns: 1fr; }
+      .project-meta, .blog-meta { display: none; }
+      .edu-row { grid-template-columns: 1fr; gap: 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 3rem 1.25rem; }
+      .masthead { padding: 5rem 1.25rem 3rem; }
+      .blog-post { padding: 2rem 1.25rem 3rem; }
+      .resume-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Gaurav Kishore</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Story</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Writing</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" onclick="openResumeModal();return false;" class="nav-resume">Resume ↓</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-kicker">Senior Product Manager · Bengaluru, India · 2025</div>
+    <div class="masthead-grid">
+      <div>
+        <h1 class="masthead-name">Gaurav<br>Kishore</h1>
+        <p class="masthead-deck">"I've spent my career turning messy growth problems into clean product decisions — across telecom, ecommerce, and now AI."</p>
+        <div class="masthead-byline">
+          <a href="/cdn-cgi/l/email-protection#5f383e2a2d3e296d6f6d34362c37302d3a1f38323e3633713c3032">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span class="__cf_email__" data-cfemail="90f7f1e5e2f1e6a2a0a2fbf9e3f8ffe2f5d0f7fdf1f9fcbef3fffd">[email&#160;protected]</span>
+          </a>
+          <a href="https://www.linkedin.com/in/gaurav202kishore" target="_blank">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/gaurav404kishore-max" target="_blank">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div class="photo-frame">
+        <img src="photo.jpeg" alt="Gaurav Kishore" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAT RULE -->
+<div class="stat-rule fade">
+  <div class="stat-rule-inner">
+    <div class="stat-item"><div class="stat-n">5+</div><div class="stat-l">Years in product</div></div>
+    <div class="stat-item"><div class="stat-n">$60M+</div><div class="stat-l">Revenue influenced</div></div>
+    <div class="stat-item"><div class="stat-n">30+</div><div class="stat-l">Experiments shipped</div></div>
+    <div class="stat-item"><div class="stat-n">1,000+</div><div class="stat-l">Platform users scaled</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">About</span><span class="section-rule"></span></div>
+    <div class="about-body fade">
+      <p class="about-para">I'm a Consumer and Growth PM, based in Bengaluru — though I grew up in Ranchi, where the hills were always close. Over five years, I've had the opportunity to work across some of India's most demanding product environments — Swiggy, Airtel, a multi-market ecommerce business, and now a global AI platform at AB InBev.</p>
+      <p class="about-para">I tend to stay in the problem longer than most people are comfortable with. Not because I'm slow, but because I've found that most product decisions go wrong not at the execution stage, but much earlier — when the problem itself wasn't understood well enough. Solutions come in versions. The right problem, if you've found it, tends to stay constant.</p>
+      <p class="about-para">Outside of work, I still find myself drawn to the mountains when I can.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">The story</span><span class="section-rule"></span></div>
+
+    <!-- Chapter 01: Swiggy -->
+    <div class="chapter fade">
+      <div class="chapter-head" onclick="toggleChapter(this)">
+        <div class="chapter-left">
+          <div class="chapter-num">Chapter 01</div>
+          <div class="chapter-role">Learning the craft at one of India's most demanding consumer apps</div>
+        </div>
+        <div class="chapter-right">
+          <img src="logo-swiggy.png" alt="Swiggy" class="company-logo company-logo-light">
+          <span class="chapter-period">Aug 2021 – Jul 2022</span>
+          <span class="chapter-toggle">+</span>
+        </div>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-narrative">My first product role. I was dropped into Swiggy's grocery vertical with one mandate — grow. What followed was a crash course in consumer behaviour, merchandising psychology, and the art of moving fast without breaking things.</p>
+        <div class="chapter-nums">
+          <div class="cn"><span class="cn-n">7×</span><span class="cn-l">DAU growth, grocery</span></div>
+          <div class="cn"><span class="cn-n">46%</span><span class="cn-l">Add-to-cart lift</span></div>
+          <div class="cn"><span class="cn-n">5K+</span><span class="cn-l">SKUs scaled</span></div>
+        </div>
+        <button class="detail-toggle" onclick="toggleDetails(event, this)">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 1l4 4-4 4"/></svg>
+          See full details
+        </button>
+        <div class="chapter-details">
+          <ul class="detail-list">
+            <li>Drove 7× DAU and 2.5× AOV growth in the grocery category through merchandising experiments and pricing strategy</li>
+            <li>Revamped homepage discovery experience — add-to-cart up 46%, engagement CTR up 11%</li>
+            <li>Built brand monetisation products including offers, merchandising, and sampling, contributing 3% to overall revenue</li>
+            <li>Scaled catalogue from 300 to 5,000+ SKUs across 6 cities by rebuilding the vendor catalogue platform</li>
+            <li>Improved search relevance and ranking algorithms — add-to-cart up 31%, discovery CTR improved by 3.5 ranks</li>
+            <li>Built demand shaping platforms to handle COVID-era traffic spikes, increasing revenue by 15%</li>
+          </ul>
+          <div class="chapter-tags"><span class="ctag">Consumer growth</span><span class="ctag">Merchandising</span><span class="ctag">Search & discovery</span><span class="ctag">Experimentation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 02: Airtel -->
+    <div class="chapter fade">
+      <div class="chapter-head" onclick="toggleChapter(this)">
+        <div class="chapter-left">
+          <div class="chapter-num">Chapter 02</div>
+          <div class="chapter-role">Building the growth engine for 300M+ customers, from scratch</div>
+        </div>
+        <div class="chapter-right">
+          <img src="logo-airtel.png" alt="Airtel" class="company-logo company-logo-dark">
+          <span class="chapter-period">Jul 2022 – Sep 2023</span>
+          <span class="chapter-toggle">+</span>
+        </div>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-narrative">Moving from food-tech to telecom meant a new scale entirely. I built Airtel's CLM platform from scratch — a system that automated lifecycle journeys across Prepaid, Postpaid, Broadband, and DTH. The job wasn't just shipping features; it was building the infrastructure for growth itself.</p>
+        <div class="chapter-nums">
+          <div class="cn"><span class="cn-n">2.3×</span><span class="cn-l">App activation</span></div>
+          <div class="cn"><span class="cn-n">70%</span><span class="cn-l">Go-live time saved</span></div>
+          <div class="cn"><span class="cn-n">20%</span><span class="cn-l">Churn reduced</span></div>
+        </div>
+        <button class="detail-toggle" onclick="toggleDetails(event, this)">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 1l4 4-4 4"/></svg>
+          See full details
+        </button>
+        <div class="chapter-details">
+          <ul class="detail-list">
+            <li>Built Airtel's CLM platform integrating C360, Airtel IQ, Salesforce, and provisioning systems from the ground up</li>
+            <li>Increased app activation 2.3× and early recharges by 27% through behavioral nudges and usage-triggered onboarding</li>
+            <li>Reduced port-in drop-offs by 31% via WhatsApp-led guided onboarding journeys</li>
+            <li>Boosted broadband install conversion by 20% and cut SLA breaches by 44% through automated tracking and escalation</li>
+            <li>Productized campaign templates — reducing go-live time by 70% for cross-functional teams</li>
+            <li>Developed ML models for identifying at-risk cohorts, reducing churn by 20%</li>
+            <li>Managed $150K budget, reducing expenses by 15% and achieving 20% higher ROI</li>
+          </ul>
+          <div class="chapter-tags"><span class="ctag">CLM platforms</span><span class="ctag">0 to 1 build</span><span class="ctag">Lifecycle growth</span><span class="ctag">Retention</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 03: Group Bayport -->
+    <div class="chapter fade">
+      <div class="chapter-head" onclick="toggleChapter(this)">
+        <div class="chapter-left">
+          <div class="chapter-num">Chapter 03</div>
+          <div class="chapter-role">Owning revenue across a multi-market ecommerce portfolio</div>
+        </div>
+        <div class="chapter-right">
+          <img src="logo-bayport.png" alt="Group Bayport" class="company-logo company-logo-dark">
+          <span class="chapter-period">Sep 2023 – Oct 2025</span>
+          <span class="chapter-toggle">+</span>
+        </div>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-narrative">For the first time, I owned a P&L. I led revenue product strategy across acquisition, activation, and monetisation — managing a team of 4 APMs and clocking $60M in revenue. The complexity of multi-country ecommerce, with its varied payment rails, logistics partners, and customer behaviours, made every decision consequential.</p>
+        <div class="chapter-nums">
+          <div class="cn"><span class="cn-n">$60M</span><span class="cn-l">Revenue influenced</span></div>
+          <div class="cn"><span class="cn-n">45%</span><span class="cn-l">Cart-to-checkout lift</span></div>
+          <div class="cn"><span class="cn-n">30+</span><span class="cn-l">Experiments shipped</span></div>
+        </div>
+        <button class="detail-toggle" onclick="toggleDetails(event, this)">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 1l4 4-4 4"/></svg>
+          See full details
+        </button>
+        <div class="chapter-details">
+          <ul class="detail-list">
+            <li>Led Insurance revenue stream for Coversandall.com across multiple countries — $500K in 60 days with 42% adoption</li>
+            <li>Redesigned product page customisation journey, increasing ATC by 9% and reducing drop-off by 29%</li>
+            <li>Ran 30+ A/B and multivariate experiments improving conversion 9% YoY across PDP, checkout, and discovery</li>
+            <li>Integrated Stripe payment intent and additional payment methods — cart-to-checkout improved by 45%</li>
+            <li>Spearheaded AI Agent-powered content automation, driving 23% more engagement on PDPs</li>
+            <li>Improved NPS by 12% and reduced customer effort score by 25% across pre-post purchase journeys</li>
+            <li>Implemented personalisation and search ranking improvements, increasing product discovery efficiency by 23%</li>
+          </ul>
+          <div class="chapter-tags"><span class="ctag">Revenue ownership</span><span class="ctag">Multi-market</span><span class="ctag">Conversion optimisation</span><span class="ctag">AI automation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 04: AB InBev -->
+    <div class="chapter fade">
+      <div class="chapter-head" onclick="toggleChapter(this)">
+        <div class="chapter-left">
+          <div class="chapter-num">Chapter 04</div>
+          <div class="chapter-role">Rethinking how large organisations run experiments, with GenAI</div>
+        </div>
+        <div class="chapter-right">
+          <img src="logo-abinbev.png" alt="AB InBev" class="company-logo company-logo-dark">
+          <span class="chapter-period">Oct 2025 – Present</span>
+          <span class="chapter-toggle">+</span>
+        </div>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-narrative">The current chapter. At AB InBev, I'm working on something that genuinely excites me — a GenAI-powered experimentation platform used by 1,000+ users globally. The challenge here isn't just product; it's rethinking how large organisations make decisions faster, with less friction and more confidence.</p>
+        <div class="chapter-nums">
+          <div class="cn"><span class="cn-n">1,000+</span><span class="cn-l">Global users</span></div>
+          <div class="cn"><span class="cn-n">70%</span><span class="cn-l">Experiment time saved</span></div>
+          <div class="cn"><span class="cn-n">10×</span><span class="cn-l">Adoption in 3 months</span></div>
+        </div>
+        <button class="detail-toggle" onclick="toggleDetails(event, this)">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 1l4 4-4 4"/></svg>
+          See full details
+        </button>
+        <div class="chapter-details">
+          <ul class="detail-list">
+            <li>Led product strategy for a GenAI-powered experimentation platform across 1,000+ global users</li>
+            <li>Launched LLM-based test generation and failure diagnostics, reducing experiment time by 70%</li>
+            <li>Built self-serve experiment workflows scaling adoption from 100 to 1,000 users in 3 months</li>
+            <li>Partnered with engineering and data teams to establish experimentation governance and AI evaluation workflows</li>
+          </ul>
+          <div class="chapter-tags"><span class="ctag">GenAI</span><span class="ctag">LLMs</span><span class="ctag">Experimentation platforms</span><span class="ctag">Enterprise SaaS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">Built on weekends</span><span class="section-rule"></span></div>
+    <div class="projects-list">
+      <div class="project-row fade">
+        <div>
+          <div class="project-status">Live</div>
+          <div class="project-name">Squad Up — Cricket Availability Tracker</div>
+          <div class="project-desc">A mobile-first app for my office cricket squad. Solves the Friday-evening chaos of figuring out who's playing on the weekend. Real database, real users, real problem solved.</div>
+          <a href="https://gauravnewgig.netlify.app/" target="_blank" rel="noopener" class="project-link">View project →</a>
+        </div>
+        <div class="project-meta">
+          <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
+        </div>
+      </div>
+      <div class="project-row fade">
+        <div>
+          <div class="project-status">Building</div>
+          <div class="project-name">Clear Notes — Dead-simple Notes & Reminders</div>
+          <div class="project-desc">A notes app with zero clutter. No folders, no tags, no friction. Write it down, get reminded. Built for people who find other apps overwhelming.</div>
+          <span class="project-link-muted">Coming soon</span>
+        </div>
+        <div class="project-meta">
+          <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
+        </div>
+      </div>
+      <div class="project-row fade">
+        <div>
+          <div class="project-status">Live</div>
+          <div class="project-name">FitLog — Fitness Tracker</div>
+          <div class="project-desc">Log strength and cardio sessions, track streaks, view trends across six time ranges. Paste your run summary and AI extracts the numbers automatically. Dark and light mode.</div>
+          <a href="https://fitelo.netlify.app/" target="_blank" rel="noopener" class="project-link">View project →</a>
+        </div>
+        <div class="project-meta">
+          <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">Writing</span><span class="section-rule"></span></div>
+    <div class="blog-list">
+      <div class="blog-row fade" onclick="openPost()">
+        <div>
+          <div class="blog-tag">Product thinking</div>
+          <div class="blog-title">How to start developing a Product Sense — and why it has nothing to do with being a PM</div>
+          <div class="blog-excerpt">Product Sense isn't a skill you learn in a course or pick up from a framework. It's closer to a muscle — one that most people never train deliberately because they don't realise it's separate from the job itself. Here's how to actually build it.</div>
+          <div class="blog-read">Read the post <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 1l4 4-4 4"/></svg></div>
+        </div>
+        <div class="blog-meta">Mar 2026 · 7 min read</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG POST MODAL -->
+<div class="blog-overlay" id="blogOverlay" onclick="closePostOnBg(event)">
+  <div class="blog-post">
+    <button class="blog-post-close" onclick="closePost()">×</button>
+    <div class="blog-post-tag">Product thinking</div>
+    <h1 class="blog-post-title">How to start developing a Product Sense — and why it has nothing to do with being a PM</h1>
+    <div class="blog-post-byline">Gaurav Kishore · March 2026 · 7 min read</div>
+    <div class="blog-post-body">
+
+      <p>Most people confuse Product Sense with product management. They're not the same thing. Product management is a job. Product Sense is a way of seeing — and you can develop it whether you're a PM, an engineer, a designer, or someone who's never worked in tech at all.</p>
+
+      <p>I've met PMs with five years of experience who have almost no Product Sense. And I've met fresh graduates who walk into a product review and immediately ask the question that cuts to the core of the problem. The difference isn't experience. It's a habit of attention that one person has cultivated and the other hasn't.</p>
+
+      <div class="callout">Product Sense is the ability to look at something — an app, a service, a physical experience — and instinctively understand what's working, what isn't, and why. More importantly, it's knowing what to fix first.</div>
+
+      <p>The good news is that it's trainable. Here's how I think about building it deliberately.</p>
+
+      <h2>Step 1 — Become a dissatisfied user</h2>
+      <div class="step">
+        <div class="step-num">Do this now</div>
+        <div class="step-title">Pick one app you use every day. Spend 15 minutes using it as if it were your job to break it.</div>
+        <p>Where does it slow you down? What do you tap on by habit, even though it doesn't quite do what you want? What would you remove? Don't read about it — use it, feel the friction. Write three things down. Not features — feelings. "This feels slow." "I never know where I am." "I always misread this button."</p>
+      </div>
+
+      <p>Most people use products on autopilot. Product Sense starts when you switch off autopilot and start noticing. You're training your brain to register friction instead of ignoring it.</p>
+
+      <h2>Step 2 — Ask "why does this exist?" not "what does this do?"</h2>
+      <div class="step">
+        <div class="step-num">Do this now</div>
+        <div class="step-title">Take any feature in any product and ask: what problem was someone trying to solve when they built this?</div>
+        <p>Not what the feature does. Why it exists. Instagram's Close Friends list — what was the problem? YouTube's autoplay — what user behaviour were they trying to change? LinkedIn's "People Also Viewed" — who does this actually serve? Asking "why does this exist" forces you into the problem space. That's exactly where Product Sense lives.</p>
+      </div>
+
+      <h2>Step 3 — Observe real people, not personas</h2>
+      <div class="step">
+        <div class="step-num">Do this now</div>
+        <div class="step-title">Watch someone who is not you use an app you think you understand well. Say nothing. Just observe.</div>
+        <p>Watch your parents use Google Pay. Watch a friend book a flight. Watch a child use YouTube. You will immediately see things you've never noticed. Where they pause. What confuses them. What they do differently from you. Real observation destroys assumptions faster than any amount of data analysis. Do this once a week if you can.</p>
+      </div>
+
+      <h2>Step 4 — Develop taste by consuming deliberately</h2>
+      <div class="step">
+        <div class="step-num">Do this now</div>
+        <div class="step-title">Every time you encounter a product experience — digital or physical — that feels effortless, stop and ask: what made that effortless?</div>
+        <p>A hotel check-in that was surprisingly smooth. A government form that was actually clear. A restaurant menu that made ordering easy. Product Sense is built from a library of moments — both good and bad — that you've paid attention to. The library only grows if you're actively adding to it. Most people let these moments pass. Don't.</p>
+      </div>
+
+      <h2>Step 5 — Practice articulating the trade-off</h2>
+      <div class="step">
+        <div class="step-num">Do this now</div>
+        <div class="step-title">Take any product decision you've noticed — a redesign, a new feature, a removal — and articulate the trade-off in one sentence.</div>
+        <p>Not "they added a dark mode." But: "they chose to invest engineering time in a feature that deepens engagement for existing power users, at the cost of simplicity for new ones." Every product decision is a trade-off. The moment you can see the trade-off clearly, you're thinking in product. This is the core of Product Sense — not knowing what to build, but knowing what you're giving up when you build it.</p>
+      </div>
+
+      <h2>The honest thing about Product Sense</h2>
+
+      <p>It takes time. There's no shortcut. But the single fastest accelerant I've seen is this: stay in the problem longer than feels comfortable. Most people jump to solutions — it feels productive, it feels smart. Sitting with a problem, turning it over, asking why it exists, who it really affects, what would change if it disappeared — that is the work. Everything else follows from that.</p>
+
+      <p>You don't develop Product Sense by reading about products. You develop it by paying a different kind of attention to the world you already live in.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">The toolkit</span><span class="section-rule"></span></div>
+    <div class="skills-grid">
+      <div class="fade">
+        <div class="skill-col-title">Product craft</div>
+        <div class="skill-items">
+          <span class="skill-item">Strategy & roadmapping</span>
+          <span class="skill-item">User research</span>
+          <span class="skill-item">Agile / Scrum</span>
+          <span class="skill-item">Prioritisation frameworks</span>
+          <span class="skill-item">Go-to-market</span>
+        </div>
+      </div>
+      <div class="fade">
+        <div class="skill-col-title">Growth & experimentation</div>
+        <div class="skill-items">
+          <span class="skill-item">A/B & multivariate testing</span>
+          <span class="skill-item">Acquisition & retention</span>
+          <span class="skill-item">Funnel optimisation</span>
+          <span class="skill-item">CLM platforms</span>
+          <span class="skill-item">Personalisation</span>
+        </div>
+      </div>
+      <div class="fade">
+        <div class="skill-col-title">Data & analytics</div>
+        <div class="skill-items">
+          <span class="skill-item">SQL</span>
+          <span class="skill-item">Tableau / Power BI</span>
+          <span class="skill-item">Google & Adobe Analytics</span>
+          <span class="skill-item">Adobe Target · VWO</span>
+          <span class="skill-item">Mixpanel</span>
+        </div>
+      </div>
+      <div class="fade">
+        <div class="skill-col-title">AI & building</div>
+        <div class="skill-items">
+          <span class="skill-item">GenAI / LLMs</span>
+          <span class="skill-item">Prompt engineering</span>
+          <span class="skill-item">HTML / CSS / JS</span>
+          <span class="skill-item">Supabase · GitHub · Netlify</span>
+          <span class="skill-item">Figma · Wireframing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">Foundation</span><span class="section-rule"></span></div>
+    <div class="edu-row fade">
+      <div>
+        <div class="edu-year">2021</div>
+        <div class="edu-degree">MBA</div>
+        <div class="edu-school">Indian Institute of Management (IIM), Nagpur</div>
+      </div>
+      <div>
+        <div class="edu-year">2019</div>
+        <div class="edu-degree">B.Tech, Industrial Engineering</div>
+        <div class="edu-school">BIT Sindri, Dhanbad</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME DOWNLOAD -->
+<div id="resume-section" class="fade">
+  <div class="resume-inner">
+    <div class="resume-text-block">
+      <div class="resume-label">Full CV</div>
+      <div class="resume-headline">Five years, four companies, one document.</div>
+    </div>
+    <button onclick="openResumeModal()" class="resume-download">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Request Resume
+    </button>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="section-head fade"><span class="section-label">Get in touch</span><span class="section-rule"></span></div>
+    <p class="contact-deck fade">"Whether it's a role, a collaboration, or just a good conversation about building things — I'm always open to it."</p>
+    <div class="contact-links fade">
+      <a href="/cdn-cgi/l/email-protection#573036222536216567653c3e243f38253217303a363e3b7934383a" class="clink primary">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Say hello
+      </a>
+      <a href="https://www.linkedin.com/in/gaurav202kishore" target="_blank" class="clink">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/gaurav404kishore-max" target="_blank" class="clink">
+        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>Gaurav Kishore · Built with intent · 2026</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleChapter(head) {
+    const body = head.nextElementSibling;
+    const toggle = head.querySelector('.chapter-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    toggle.classList.toggle('open', !isOpen);
+  }
+  function toggleDetails(e, btn) {
+    e.stopPropagation();
+    const details = btn.nextElementSibling;
+    const isOpen = details.classList.contains('open');
+    details.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    const text = btn.childNodes[1];
+    text.textContent = isOpen ? ' See full details' : ' Hide details';
+  }
+  function openPost() {
+    document.getElementById('blogOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePost() {
+    document.getElementById('blogOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closePostOnBg(e) {
+    if (e.target === document.getElementById('blogOverlay')) c
+<!-- RESUME MODAL -->
+<div class="resume-modal-overlay" id="resume-modal-overlay" onclick="closeResumeOnBg(event)">
+  <div class="resume-modal">
+    <button class="resume-modal-close" onclick="closeResumeModal()">×</button>
+    <div class="resume-modal-eyebrow">Resume request</div>
+    <div class="resume-modal-title">I'll send it<br>directly to you.</div>
+    <div class="resume-modal-body">I prefer sharing my resume personally rather than leaving it as a public download. Drop your email below and I'll send it across — usually within a day.</div>
+    <label class="resume-email-label" for="requester-email">Your email address</label>
+    <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
+    <div class="resume-preview">
+      <div class="resume-preview-label">Message preview</div>
+      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from">your@email.com</span></div>
+    </div>
+    <button class="resume-send-btn" onclick="sendResumeRequest()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Send request
+    </button>
+    <div class="resume-note">Opens your email app with everything pre-filled.</div>
+  </div>
+</div>
+
+<script>
+  function openResumeModal() {
+    document.getElementById('requester-email').value = '';
+    document.getElementById('preview-from').textContent = 'your@email.com';
+    document.getElementById('resume-modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('requester-email').focus(), 300);
+  }
+  function closeResumeModal() {
+    document.getElementById('resume-modal-overlay').classList.remove('open');
+  }
+  function closeResumeOnBg(e) {
+    if (e.target === document.getElementById('resume-modal-overlay')) closeResumeModal();
+  }
+  function updateMailto() {
+    const email = document.getElementById('requester-email').value.trim();
+    document.getElementById('preview-from').textContent = email || 'your@email.com';
+  }
+  function sendResumeRequest() {
+    const email = document.getElementById('requester-email').value.trim();
+    if (!email || !email.includes('@')) {
+      const inp = document.getElementById('requester-email');
+      inp.focus(); inp.style.borderColor = '#C2410C';
+      setTimeout(() => inp.style.borderColor = '', 1500);
+      return;
+    }
+    const subject = encodeURIComponent('Resume Request — ' + email);
+    const body = encodeURIComponent('Hi Gaurav,\n\nI came across your portfolio and would like to request your resume. Please share it at your convenience.\n\n— ' + email);
+    window.location.href = 'mailto:gaurav202kishore@gmail.com?subject=' + subject + '&body=' + body;
+    setTimeout(closeResumeModal, 1000);
+  }
+</script>
