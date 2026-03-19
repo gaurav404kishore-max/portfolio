@@ -95,9 +95,9 @@
     .chapter-toggle.open { transform: rotate(45deg); color: var(--accent); }
 
     /* COMPANY LOGOS */
-    .company-logo { height: 24px; width: auto; display: block; object-fit: contain; }
-    .company-logo-light { opacity: 0.85; }
-    .company-logo-dark { mix-blend-mode: multiply; opacity: 0.9; border-radius: 2px; }
+    .company-logo { height: 28px; width: auto; display: block; object-fit: contain; }
+    .company-logo-light { opacity: 1; }
+    .company-logo-dark { opacity: 1; border-radius: 2px; }
     .company-logo-text { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink-mid); }
 
     .chapter-body { display: none; padding-bottom: 2rem; }
@@ -126,7 +126,8 @@
     .project-row { display: grid; grid-template-columns: 3fr 1fr; gap: 2rem; padding: 1.75rem 0; border-top: 1px solid var(--rule); align-items: start; }
     .project-row:last-child { border-bottom: 1px solid var(--rule); }
     .project-status { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .project-name { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.2px; }
+    .project-name { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.2px; text-decoration: none; display: block; }
+    .project-name:hover { color: var(--accent); }
     .project-desc { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); line-height: 1.65; }
     .project-link { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; letter-spacing: 0.02em; transition: gap 0.15s; }
     .project-link:hover { gap: 7px; }
@@ -505,7 +506,7 @@
       <div class="project-row fade">
         <div>
           <div class="project-status">Live</div>
-          <div class="project-name">Squad Up — Cricket Availability Tracker</div>
+          <a href="https://gauravnewgig.netlify.app/" target="_blank" rel="noopener" class="project-name">Squad Up — Cricket Availability Tracker</a>
           <div class="project-desc">A mobile-first app for my office cricket squad. Solves the Friday-evening chaos of figuring out who's playing on the weekend. Real database, real users, real problem solved.</div>
           <a href="https://gauravnewgig.netlify.app/" target="_blank" rel="noopener" class="project-link">View project →</a>
         </div>
@@ -516,7 +517,7 @@
       <div class="project-row fade">
         <div>
           <div class="project-status">Live</div>
-          <div class="project-name">Clear Notes — Dead-simple Notes & Reminders</div>
+          <a href="https://clear-notes.netlify.app" target="_blank" rel="noopener" class="project-name">Clear Notes — Dead-simple Notes & Reminders</a>
           <div class="project-desc">A notes app with zero clutter. No folders, no tags, no friction. Write it down, get reminded. Biometric login, colour-coded cards, overdue reminders. Built for people who find other apps overwhelming.</div>
           <a href="https://clear-notes.netlify.app" target="_blank" rel="noopener" class="project-link">View project →</a>
         </div>
@@ -527,7 +528,7 @@
       <div class="project-row fade">
         <div>
           <div class="project-status">Live</div>
-          <div class="project-name">FitLog — Fitness Tracker</div>
+          <a href="https://fitelo.netlify.app/" target="_blank" rel="noopener" class="project-name">FitLog — Fitness Tracker</a>
           <div class="project-desc">Log strength and cardio sessions, track streaks, view trends across six time ranges. Paste your run summary and AI extracts the numbers automatically. Dark and light mode.</div>
           <a href="https://fitelo.netlify.app/" target="_blank" rel="noopener" class="project-link">View project →</a>
         </div>
@@ -765,9 +766,9 @@
   </div>
 </section>
 
-<footer>Gaurav Kishore · Built with intent · 2026 · <a href="mailto:gaurav202kishore@gmail.com" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'">gaurav202kishore@gmail.com</a></footer>
+<footer>Gaurav Kishore · Built with intent · 2026 · <a href="/cdn-cgi/l/email-protection#157274606774632725277e7c667d7a6770557278747c793b767a78" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'"><span class="__cf_email__" data-cfemail="402721353221367270722b2933282f322500272d21292c6e232f2d">[email&#160;protected]</span></a></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleMenu() {
     const h = document.getElementById('hamburger');
     const m = document.getElementById('mobile-menu');
@@ -824,7 +825,7 @@
     <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
     <div class="resume-preview">
       <div class="resume-preview-label">Message preview</div>
-      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from">your@email.com</span></div>
+      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aad3c5dfd8eacfc7cbc3c684c9c5c7">[email&#160;protected]</a></span></div>
     </div>
     <button class="resume-send-btn" onclick="sendResumeRequest()">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -834,7 +835,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function openResumeModal() {
     document.getElementById('requester-email').value = '';
     document.getElementById('preview-from').textContent = 'your@email.com';
@@ -856,15 +857,4 @@
     if (!email || !email.includes('@')) {
       const inp = document.getElementById('requester-email');
       inp.focus(); inp.style.borderColor = '#C2410C';
-      setTimeout(() => inp.style.borderColor = '', 1500);
-      return;
-    }
-    const subject = encodeURIComponent('Resume Request — ' + email);
-    const body = encodeURIComponent('Hi Gaurav,\n\nI came across your portfolio and would like to request your resume. Please share it at your convenience.\n\n— ' + email);
-    window.location.href = 'mailto:gaurav202kishore@gmail.com?subject=' + subject + '&body=' + body;
-    setTimeout(closeResumeModal, 1000);
-  }
-</script>
-
-</body>
-</html>
+      setTimeo
