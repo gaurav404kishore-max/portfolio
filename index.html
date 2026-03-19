@@ -230,7 +230,7 @@
     .blog-read { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--accent); margin-top: 10px; display: inline-flex; align-items: center; gap: 4px; }
 
     /* BLOG POST MODAL */
-    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 9998; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
     .blog-overlay.open { display: flex; }
     .blog-post { background: var(--paper); max-width: 680px; width: 100%; border-radius: 4px; padding: 3rem 3rem 4rem; margin: auto; position: relative; }
     .blog-post-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--muted); line-height: 1; font-family: var(--sans); }
@@ -285,7 +285,7 @@
     .clink.primary:hover { background: #A83509; border-color: #A83509; }
 
     /* RESUME MODAL */
-    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
     .resume-modal-overlay.open { opacity: 1; pointer-events: all; }
     .resume-modal { background: var(--paper); max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--rule); padding: 2rem; transform: translateY(16px); transition: transform 0.25s; }
     .resume-modal-overlay.open .resume-modal { transform: translateY(0); }
@@ -586,7 +586,7 @@
     <div class="projects-list">
 
       <!-- CARD 1: NEARBY -->
-      <div class="pcard fade active" id="card-nearby" onclick="toggleThink('nearby')">
+      <div class="pcard fade" id="card-nearby" onclick="toggleThink('nearby')">
         <div class="pcard-viewport">
           <div class="vp-browser">
             <div class="vp-bar">
@@ -716,7 +716,7 @@
     </div>
 
     <!-- THINKING PANELS -->
-    <div class="think-panel open" id="think-nearby">
+    <div class="think-panel" id="think-nearby">
       <div class="think-inner">
         <div class="think-col">
           <div class="think-tag">The problem</div>
@@ -793,10 +793,6 @@
         </div>
         <div class="blog-meta">Mar 2026 · 7 min read</div>
       </div>
-    </div>
-  </div>
-</section>
-
     </div>
   </div>
 </section>
@@ -980,7 +976,7 @@
     <div class="section-head fade"><span class="section-label">Get in touch</span><span class="section-rule"></span></div>
     <p class="contact-deck fade">"Whether it's a role, a collaboration, or just a good conversation about building things — I'm always open to it."</p>
     <div class="contact-links fade">
-      <a href="/cdn-cgi/l/email-protection#573036222536216567653c3e243f38253217303a363e3b7934383a" class="clink primary">
+      <a href="#" onclick="window.location.href='mai'+'lto:'+'gaurav202kishore'+'@'+'gmail.com';return false;" class="clink primary">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Say hello
       </a>
@@ -996,9 +992,9 @@
   </div>
 </section>
 
-<footer>Gaurav Kishore · Built with intent · 2026 · <a href="/cdn-cgi/l/email-protection#157274606774632725277e7c667d7a6770557278747c793b767a78" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'"><span class="__cf_email__" data-cfemail="402721353221367270722b2933282f322500272d21292c6e232f2d">[email&#160;protected]</span></a></footer>
+<footer>Gaurav Kishore · Built with intent · 2026 · <a href="#" onclick="window.location.href='mai'+'lto:'+'gaurav202kishore'+'@'+'gmail.com';return false;" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'">gaurav202kishore@gmail.com</a></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const _projects = ['nearby', 'clearnotes', 'fitlog'];
   function toggleThink(id) {
     const card = document.getElementById('card-' + id);
@@ -1058,30 +1054,7 @@
     entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 80); });
   }, { threshold: 0.07 });
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-</script>
 
-<!-- RESUME MODAL -->
-<div class="resume-modal-overlay" id="resume-modal-overlay" onclick="closeResumeOnBg(event)">
-  <div class="resume-modal">
-    <button class="resume-modal-close" onclick="closeResumeModal()">×</button>
-    <div class="resume-modal-eyebrow">Resume request</div>
-    <div class="resume-modal-title">I'll send it<br>directly to you.</div>
-    <div class="resume-modal-body">I prefer sharing my resume personally rather than leaving it as a public download. Drop your email below and I'll send it across — usually within an hour.</div>
-    <label class="resume-email-label" for="requester-email">Your email address</label>
-    <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
-    <div class="resume-preview">
-      <div class="resume-preview-label">Message preview</div>
-      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aad3c5dfd8eacfc7cbc3c684c9c5c7">[email&#160;protected]</a></span></div>
-    </div>
-    <button class="resume-send-btn" onclick="sendResumeRequest()">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      Send request
-    </button>
-    <div class="resume-note">Opens your email app with everything pre-filled.</div>
-  </div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function openResumeModal() {
     document.getElementById('requester-email').value = '';
     document.getElementById('preview-from').textContent = 'your@email.com';
@@ -1103,4 +1076,35 @@
     if (!email || !email.includes('@')) {
       const inp = document.getElementById('requester-email');
       inp.focus(); inp.style.borderColor = '#C2410C';
-      setTimeo
+      setTimeout(() => inp.style.borderColor = '', 1500);
+      return;
+    }
+    const subject = encodeURIComponent('Resume Request — ' + email);
+    const body = encodeURIComponent('Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.\n\n— ' + email);
+    window.location.href = 'mailto:gaurav202kishore@gmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+
+<!-- RESUME MODAL -->
+<div class="resume-modal-overlay" id="resume-modal-overlay" onclick="closeResumeOnBg(event)">
+  <div class="resume-modal">
+    <button class="resume-modal-close" onclick="closeResumeModal()">×</button>
+    <div class="resume-modal-eyebrow">Resume request</div>
+    <div class="resume-modal-title">I'll send it<br>directly to you.</div>
+    <div class="resume-modal-body">I prefer sharing my resume personally rather than leaving it as a public download. Drop your email below and I'll send it across — usually within an hour.</div>
+    <label class="resume-email-label" for="requester-email">Your email address</label>
+    <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
+    <div class="resume-preview">
+      <div class="resume-preview-label">Message preview</div>
+      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from">your@email.com</span></div>
+    </div>
+    <button class="resume-send-btn" onclick="sendResumeRequest()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Send request
+    </button>
+    <div class="resume-note">Opens your email app with everything pre-filled.</div>
+  </div>
+</div>
+
+</body>
+</html>
