@@ -95,9 +95,9 @@
     .chapter-toggle.open { transform: rotate(45deg); color: var(--accent); }
 
     /* COMPANY LOGOS */
-    .company-logo { height: 24px; width: auto; display: block; object-fit: contain; }
-    .company-logo-light { opacity: 0.85; }
-    .company-logo-dark { mix-blend-mode: multiply; opacity: 0.9; border-radius: 2px; }
+    .company-logo { height: 28px; width: auto; max-width: 120px; display: block; object-fit: contain; }
+    .company-logo-light { opacity: 1; }
+    .company-logo-dark { opacity: 1; }
     .company-logo-text { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink-mid); }
 
     .chapter-body { display: none; padding-bottom: 2rem; }
@@ -122,17 +122,100 @@
 
     /* PROJECTS */
     #projects { background: var(--paper-dark); }
-    .projects-list { display: flex; flex-direction: column; }
-    .project-row { display: grid; grid-template-columns: 3fr 1fr; gap: 2rem; padding: 1.75rem 0; border-top: 1px solid var(--rule); align-items: start; }
-    .project-row:last-child { border-bottom: 1px solid var(--rule); }
-    .project-status { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .project-name { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.2px; }
-    .project-desc { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); line-height: 1.65; }
-    .project-link { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; letter-spacing: 0.02em; transition: gap 0.15s; }
-    .project-link:hover { gap: 7px; }
-    .project-link-muted { font-family: var(--sans); font-size: 12px; color: var(--faint); margin-top: 10px; display: inline-block; font-style: italic; }
-    .project-pills { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
-    .ppill { font-family: var(--sans); font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
+    /* PROJECTS — new card grid */
+    .projects-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .pcard { background: #1A1408; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: 1.5px solid transparent; position: relative; }
+    .pcard:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+    .pcard.active { border-color: var(--accent); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .pcard-viewport { width: 100%; aspect-ratio: 16/10; background: #0D0D0D; position: relative; overflow: hidden; flex-shrink: 0; }
+    .vp-browser { width: 100%; height: 100%; display: flex; flex-direction: column; }
+    .vp-bar { background: #1E1E1E; padding: 6px 10px; display: flex; align-items: center; gap: 6px; flex-shrink: 0; border-bottom: 1px solid #2A2A2A; }
+    .vp-dots { display: flex; gap: 4px; }
+    .vp-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .vp-url { flex: 1; background: #2A2A2A; border-radius: 4px; padding: 3px 8px; font-size: 8px; color: #555; margin: 0 6px; }
+    .vp-body { flex: 1; overflow: hidden; position: relative; }
+    .pcard-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .pcard-top { display: flex; justify-content: space-between; align-items: center; }
+    .live-badge { display: inline-flex; align-items: center; gap: 5px; font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #E63946; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #E63946; animation: livepulse 1.4s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes livepulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(230,57,70,0.5)} 50%{opacity:.85;box-shadow:0 0 0 4px rgba(230,57,70,0)} }
+    .think-btn { font-size: 9px; font-weight: 500; color: #5A5040; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+    .think-btn svg { width: 10px; height: 10px; transition: transform 0.2s; }
+    .pcard.active .think-btn { color: var(--accent); }
+    .pcard.active .think-btn svg { transform: rotate(90deg); }
+    .pcard-name { font-family: var(--display); font-size: 15px; font-weight: 700; color: #F7F1E8; line-height: 1.25; }
+    .pcard-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .pcard-pills { display: flex; gap: 4px; flex-wrap: wrap; }
+    .pcpill { font-size: 9px; color: #5A5040; background: rgba(255,255,255,0.05); padding: 3px 7px; border-radius: 4px; }
+    .pcard-cta { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #F7F1E8; background: var(--accent); padding: 7px 14px; border-radius: 100px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.15s; }
+    .pcard-cta:hover { background: #9E2D0A; }
+    .pcard-cta svg { width: 10px; height: 10px; }
+    .think-panel { display: none; background: #EDE4D4; border-radius: 12px; margin-top: 8px; overflow: hidden; }
+    .think-panel.open { display: block; animation: thinkIn 0.25s ease; }
+    @keyframes thinkIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+    .think-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .think-col { padding: 1.5rem; }
+    .think-col:first-child { border-right: 1px solid #C8BEA8; }
+    .think-tag { font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .think-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #C8BEA8; }
+    .think-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .think-q { font-family: var(--sans); font-size: 11px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .think-a { font-family: var(--body); font-size: 12px; color: #5A5040; line-height: 1.65; }
+    /* viewport mini UI */
+    .nearby-preview { background:#fff; height:100%; display:flex; flex-direction:column; }
+    .np-sb{background:#fff;padding:4px 10px 2px;display:flex;justify-content:space-between;font-size:6px;color:#999;}
+    .np-search{margin:4px 8px;background:#F7F7F7;border-radius:20px;padding:5px 10px;display:flex;align-items:center;gap:5px;border:1px solid #E8E8E8;}
+    .np-search svg{width:8px;height:8px;color:#111;flex-shrink:0;}
+    .np-search-text{font-size:7px;color:#444;}
+    .np-cats{display:flex;gap:12px;padding:4px 8px 0;border-bottom:1px solid #E8E8E8;}
+    .np-cat{display:flex;flex-direction:column;align-items:center;gap:2px;padding-bottom:4px;border-bottom:1.5px solid transparent;}
+    .np-cat.a{border-bottom-color:#111;}
+    .np-cat svg{width:10px;height:10px;stroke:#ccc;}
+    .np-cat.a svg{stroke:#111;}
+    .np-cat-l{font-size:5px;color:#ccc;}
+    .np-cat.a .np-cat-l{color:#111;font-weight:600;}
+    .np-pills{display:flex;gap:4px;padding:4px 8px;}
+    .np-pill{font-size:6px;padding:2px 7px;border-radius:20px;border:1px solid #E0E0E0;color:#444;}
+    .np-pill.a{background:#111;color:#fff;border-color:#111;}
+    .np-rcount{padding:3px 8px;font-size:6px;color:#888;}
+    .np-rcount strong{color:#111;}
+    .np-card{margin:0 8px 8px;}
+    .np-card-img{height:40px;border-radius:7px;background:#EBF5FB;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:4px;}
+    .np-card-img svg{width:14px;height:14px;opacity:0.2;}
+    .np-badge{position:absolute;top:4px;left:4px;background:rgba(255,255,255,0.95);border-radius:4px;padding:1px 5px;font-size:5px;font-weight:600;display:flex;align-items:center;gap:2px;}
+    .np-badge-dot{width:4px;height:4px;border-radius:50%;background:#2ECC71;}
+    .np-dist{position:absolute;top:4px;right:4px;background:rgba(255,255,255,0.95);border-radius:4px;padding:1px 5px;font-size:5px;font-weight:600;}
+    .np-card-name{font-size:6px;font-weight:600;color:#111;margin-bottom:1px;}
+    .np-card-meta{font-size:5px;color:#888;margin-bottom:2px;}
+    .np-caps{display:flex;gap:2px;}
+    .np-cap{font-size:5px;padding:1px 4px;border-radius:3px;}
+    .np-cap.g{background:#E8F8F5;color:#1E8449;}
+    .np-cap.b{background:#EBF5FB;color:#1A6FA8;}
+    .np-cap.gr{background:#F2F3F4;color:#666;}
+    .cn-preview{background:#F7F1E8;height:100%;display:flex;flex-direction:column;}
+    .cn-hdr{background:#F7F1E8;padding:5px 10px;border-bottom:1px solid #C8BEA8;}
+    .cn-title{font-family:var(--display);font-size:10px;font-weight:700;color:#1A1408;}
+    .cn-sub{font-size:6px;color:#7A6E58;}
+    .cn-notes{padding:6px 8px;display:flex;flex-direction:column;gap:5px;flex:1;}
+    .cn-note{border-radius:6px;padding:6px 8px;}
+    .cn-note-text{font-size:6px;color:#1A1408;margin-bottom:3px;line-height:1.4;}
+    .cn-note-meta{font-size:5px;color:#7A6E58;}
+    .fl-preview{background:#0D0D0D;height:100%;display:flex;flex-direction:column;color:#fff;}
+    .fl-hdr{padding:5px 10px;display:flex;justify-content:space-between;align-items:center;}
+    .fl-title{font-size:8px;font-weight:700;color:#E8FF00;letter-spacing:0.05em;}
+    .fl-streak{font-size:6px;color:#E8FF00;}
+    .fl-stats{display:flex;gap:8px;padding:4px 10px 6px;border-bottom:1px solid #1A1A1A;}
+    .fl-stat-n{font-size:10px;font-weight:700;display:block;}
+    .fl-stat-l{font-size:5px;color:#555;}
+    .fl-chart{padding:8px 10px;}
+    .fl-chart-lbl{font-size:5px;color:#555;margin-bottom:4px;}
+    .fl-bars{display:flex;align-items:flex-end;gap:3px;height:28px;}
+    .fl-bar{flex:1;border-radius:2px 2px 0 0;}
+    .fl-sessions{padding:0 10px;}
+    .fl-session{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #1A1A1A;}
+    .fl-session-name{font-size:6px;color:#fff;}
+    .fl-session-meta{font-size:5px;color:#555;}
+    @media (max-width: 700px) { .projects-list { grid-template-columns: 1fr; } .think-inner { grid-template-columns: 1fr; } .think-col:first-child { border-right: none; border-bottom: 1px solid #C8BEA8; } }
 
     /* BLOG */
     #blog { background: var(--paper); }
@@ -255,7 +338,7 @@
       .masthead-grid { grid-template-columns: 1fr 160px; gap: 2rem; }
       .masthead-name { font-size: clamp(44px, 7vw, 72px); }
       .chapter-right { gap: 4px; }
-      .company-logo { height: 18px; }
+      .company-logo { height: 36px; }
     }
 
     /* RESPONSIVE — MOBILE */
@@ -267,7 +350,6 @@
       .stat-item { border-right: none; flex: none; width: 45%; padding: 0; text-align: left; }
       .chapter-right { display: none; }
       .project-row, .blog-row { grid-template-columns: 1fr; }
-      .project-meta, .blog-meta { display: none; }
       .edu-row { grid-template-columns: 1fr; gap: 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -502,40 +584,189 @@
   <div class="inner">
     <div class="section-head fade"><span class="section-label">Built on weekends</span><span class="section-rule"></span></div>
     <div class="projects-list">
-      <div class="project-row fade">
-        <div>
-          <div class="project-status">Live</div>
-          <div class="project-name">Squad Up — Cricket Availability Tracker</div>
-          <div class="project-desc">A mobile-first app for my office cricket squad. Solves the Friday-evening chaos of figuring out who's playing on the weekend. Real database, real users, real problem solved.</div>
-          <a href="https://gauravnewgig.netlify.app/" target="_blank" rel="noopener" class="project-link">View project →</a>
+
+      <!-- CARD 1: NEARBY -->
+      <div class="pcard fade active" id="card-nearby" onclick="toggleThink('nearby')">
+        <div class="pcard-viewport">
+          <div class="vp-browser">
+            <div class="vp-bar">
+              <div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div>
+              <div class="vp-url">gaurav404kishore-max.github.io/Nearby</div>
+            </div>
+            <div class="vp-body">
+              <div class="nearby-preview">
+                <div class="np-sb"><span>9:41</span><span>●●●</span></div>
+                <div class="np-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span class="np-search-text">Koramangala, Bengaluru</span></div>
+                <div class="np-cats">
+                  <div class="np-cat a"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="12" cy="16" r="2"/></svg><div class="np-cat-l">ATM</div></div>
+                  <div class="np-cat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 22V8l6-6h6l3 3v3h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4z"/><path d="M9 22V12h6v10"/></svg><div class="np-cat-l">Petrol</div></div>
+                  <div class="np-cat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div class="np-cat-l">Pharmacy</div></div>
+                </div>
+                <div class="np-pills"><div class="np-pill a">Open now</div><div class="np-pill">Cash deposit</div><div class="np-pill">SBI</div></div>
+                <div class="np-rcount"><strong>14 ATMs</strong> nearby</div>
+                <div class="np-card">
+                  <div class="np-card-img"><svg viewBox="0 0 24 24" fill="none" stroke="#1A6FA8" stroke-width="1"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="12" cy="16" r="2"/></svg>
+                    <div class="np-badge"><div class="np-badge-dot"></div>Open · 24 hrs</div>
+                    <div class="np-dist">80m</div>
+                  </div>
+                  <div class="np-card-name">SBI ATM — Koramangala</div>
+                  <div class="np-card-meta">80m away · Updated 2 hrs ago</div>
+                  <div class="np-caps"><span class="np-cap g">Cash deposit</span><span class="np-cap b">Cardless</span><span class="np-cap gr">Cash ok</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="project-meta">
-          <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="live-badge"><div class="live-dot"></div>Live</div>
+            <div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="pcard-name">NearBy — Find What You Actually Need</div>
+          <div class="pcard-footer">
+            <div class="pcard-pills"><span class="pcpill">OpenStreetMap</span><span class="pcpill">Overpass API</span></div>
+            <a href="https://gaurav404kishore-max.github.io/Nearby/" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
         </div>
       </div>
-      <div class="project-row fade">
-        <div>
-          <div class="project-status">Live</div>
-          <div class="project-name">Clear Notes — Dead-simple Notes & Reminders</div>
-          <div class="project-desc">A notes app with zero clutter. No folders, no tags, no friction. Write it down, get reminded. Biometric login, colour-coded cards, overdue reminders. Built for people who find other apps overwhelming.</div>
-          <a href="https://clear-notes.netlify.app" target="_blank" rel="noopener" class="project-link">View project →</a>
+
+      <!-- CARD 2: CLEAR NOTES -->
+      <div class="pcard fade" id="card-clearnotes" onclick="toggleThink('clearnotes')">
+        <div class="pcard-viewport">
+          <div class="vp-browser">
+            <div class="vp-bar">
+              <div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div>
+              <div class="vp-url">clear-notes.netlify.app</div>
+            </div>
+            <div class="vp-body">
+              <div class="cn-preview">
+                <div class="cn-hdr"><div class="cn-title">Clear Notes</div><div class="cn-sub">3 notes · 1 overdue</div></div>
+                <div class="cn-notes">
+                  <div class="cn-note" style="background:#FFF3E0"><div class="cn-note-text">Call dentist before Thursday — confirm appointment time</div><div class="cn-note-meta">Reminder: Thu 10am</div></div>
+                  <div class="cn-note" style="background:#F3E5F5"><div class="cn-note-text">Pick up dry cleaning on the way home</div><div class="cn-note-meta">No reminder</div></div>
+                  <div class="cn-note" style="background:#E8F5E9"><div class="cn-note-text">Review Q3 OKRs before Monday standup</div><div class="cn-note-meta">Reminder: Mon 9am</div></div>
+                  <div class="cn-note" style="background:#E3F2FD"><div class="cn-note-text">Pay electricity bill — due date is the 15th</div><div class="cn-note-meta">⚠ Overdue</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="project-meta">
-          <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="live-badge"><div class="live-dot"></div>Live</div>
+            <div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="pcard-name">Clear Notes — Dead-simple Notes & Reminders</div>
+          <div class="pcard-footer">
+            <div class="pcard-pills"><span class="pcpill">Supabase</span><span class="pcpill">WebAuthn</span></div>
+            <a href="https://clear-notes.netlify.app" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
         </div>
       </div>
-      <div class="project-row fade">
-        <div>
-          <div class="project-status">Live</div>
-          <div class="project-name">FitLog — Fitness Tracker</div>
-          <div class="project-desc">Log strength and cardio sessions, track streaks, view trends across six time ranges. Paste your run summary and AI extracts the numbers automatically. Dark and light mode.</div>
-          <a href="https://fitelo.netlify.app/" target="_blank" rel="noopener" class="project-link">View project →</a>
+
+      <!-- CARD 3: FITLOG -->
+      <div class="pcard fade" id="card-fitlog" onclick="toggleThink('fitlog')">
+        <div class="pcard-viewport">
+          <div class="vp-browser">
+            <div class="vp-bar">
+              <div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div>
+              <div class="vp-url">fitelo.netlify.app</div>
+            </div>
+            <div class="vp-body">
+              <div class="fl-preview">
+                <div class="fl-hdr"><span class="fl-title">FITLOG</span><span class="fl-streak">🔥 12 day streak</span></div>
+                <div class="fl-stats">
+                  <div><span class="fl-stat-n" style="color:#E8FF00">24</span><span class="fl-stat-l">Sessions</span></div>
+                  <div><span class="fl-stat-n" style="color:#00D4FF">18,420</span><span class="fl-stat-l">Volume kg</span></div>
+                  <div><span class="fl-stat-n" style="color:#E8FF00">42</span><span class="fl-stat-l">km run</span></div>
+                </div>
+                <div class="fl-chart">
+                  <div class="fl-chart-lbl">This week</div>
+                  <div class="fl-bars">
+                    <div class="fl-bar" style="height:40%;background:#2A2A2A"></div>
+                    <div class="fl-bar" style="height:70%;background:#E8FF00"></div>
+                    <div class="fl-bar" style="height:55%;background:#2A2A2A"></div>
+                    <div class="fl-bar" style="height:90%;background:#E8FF00"></div>
+                    <div class="fl-bar" style="height:30%;background:#2A2A2A"></div>
+                    <div class="fl-bar" style="height:80%;background:#E8FF00"></div>
+                    <div class="fl-bar" style="height:60%;background:#E8FF00"></div>
+                  </div>
+                </div>
+                <div class="fl-sessions">
+                  <div class="fl-session"><span class="fl-session-name">Push day — chest & shoulders</span><span class="fl-session-meta">Today · 6 exercises</span></div>
+                  <div class="fl-session"><span class="fl-session-name">5km run — Cubbon Park</span><span class="fl-session-meta">Yesterday · 28:14</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="project-meta">
-          <div class="project-pills"><span class="ppill">HTML / CSS / JS</span><span class="ppill">Supabase</span><span class="ppill">Netlify</span></div>
+        <div class="pcard-body">
+          <div class="pcard-top">
+            <div class="live-badge"><div class="live-dot"></div>Live</div>
+            <div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+          <div class="pcard-name">FitLog — Fitness Tracker</div>
+          <div class="pcard-footer">
+            <div class="pcard-pills"><span class="pcpill">Claude API</span><span class="pcpill">localStorage</span></div>
+            <a href="https://fitelo.netlify.app/" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- THINKING PANELS -->
+    <div class="think-panel open" id="think-nearby">
+      <div class="think-inner">
+        <div class="think-col">
+          <div class="think-tag">The problem</div>
+          <div class="think-item"><div class="think-q">Why does this exist?</div><div class="think-a">Google shows you where ATMs are. Not what they do. You walk 400m to an ATM and discover it only dispenses cash — not deposits. The information exists. It's never surfaced at the point of intent.</div></div>
+          <div class="think-item"><div class="think-q">Who is it for?</div><div class="think-a">Urban India, 25–45. High-intent, time-sensitive needs — depositing cash before a deadline, finding fuel late at night, a 24-hour pharmacy at 11pm. Zero tolerance for wrong results.</div></div>
+          <div class="think-item"><div class="think-q">North star metric</div><div class="think-a">Navigate taps per session. If someone taps navigate, the app did its job. That's the job to be done, done.</div></div>
+        </div>
+        <div class="think-col">
+          <div class="think-tag">Key decisions</div>
+          <div class="think-item"><div class="think-q">Why no ratings or reviews?</div><div class="think-a">Every feature that adds noise to a utility app is a failure of product thinking. You don't rate an ATM. Reviews increase cognitive load at the exact moment users need speed.</div></div>
+          <div class="think-item"><div class="think-q">Why list-first, not map-first?</div><div class="think-a">Distance ranking answers "which one should I go to" faster than a map. The map answers "where exactly" — that's step two, not step one.</div></div>
+          <div class="think-item"><div class="think-q">Why "Open now" always on by default?</div><div class="think-a">Nobody searches for a closed ATM intentionally. Defaulting to open removes one decision from an already urgent moment.</div></div>
         </div>
       </div>
     </div>
+
+    <div class="think-panel" id="think-clearnotes">
+      <div class="think-inner">
+        <div class="think-col">
+          <div class="think-tag">The problem</div>
+          <div class="think-item"><div class="think-q">Why another notes app?</div><div class="think-a">Most notes apps are built for power users — folders, tags, collaboration, formatting. The gap is a notes app for people who just want to not forget things. No setup, no friction, nothing to learn.</div></div>
+          <div class="think-item"><div class="think-q">Who is it for?</div><div class="think-a">People who find Notion overwhelming and Reminders too bare. The in-between user — wants colour, wants reminders, doesn't want a system.</div></div>
+          <div class="think-item"><div class="think-q">North star metric</div><div class="think-a">7-day return rate. If someone comes back a week later, the app earned a place in their routine. That's the real test for any utility product.</div></div>
+        </div>
+        <div class="think-col">
+          <div class="think-tag">Key decisions</div>
+          <div class="think-item"><div class="think-q">Why biometric login?</div><div class="think-a">The #1 drop-off in personal apps is the login screen. Face ID removes the barrier entirely — if your phone is unlocked, you're in.</div></div>
+          <div class="think-item"><div class="think-q">Why colour-coded cards?</div><div class="think-a">Colour is faster to scan than text. Instead of reading every note title, you see urgency by colour instantly. One deliberate decision that changes how the whole app feels.</div></div>
+          <div class="think-item"><div class="think-q">What was left out intentionally?</div><div class="think-a">Folders, tags, search, sharing, collaboration. Each one was deliberately removed — because the core job is: write it, don't forget it.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="think-panel" id="think-fitlog">
+      <div class="think-inner">
+        <div class="think-col">
+          <div class="think-tag">The problem</div>
+          <div class="think-item"><div class="think-q">What's the real insight?</div><div class="think-a">Most fitness apps are built around goals and programs. FitLog is built around one thing: showing you your own pattern. No goals, no pressure — just your data, clearly laid out.</div></div>
+          <div class="think-item"><div class="think-q">Why AI for cardio parsing?</div><div class="think-a">Cardio data is messy — different apps export it differently. Instead of building 10 integrations, one AI prompt handles all formats. Deliberate use of AI where it reduces friction, not as a gimmick.</div></div>
+          <div class="think-item"><div class="think-q">North star metric</div><div class="think-a">Streak length. If users are logging every day, the app is genuinely useful. Streak is a proxy for habit formation — which is the real job here.</div></div>
+        </div>
+        <div class="think-col">
+          <div class="think-tag">Key decisions</div>
+          <div class="think-item"><div class="think-q">Why six time ranges?</div><div class="think-a">Different questions need different lenses. "Am I consistent?" needs weeks. "Is this month better?" needs months. Six ranges, one tap each.</div></div>
+          <div class="think-item"><div class="think-q">Why dark mode first?</div><div class="think-a">Most gym logging happens in poorly lit spaces — gym floors, early mornings. Dark mode isn't aesthetic here, it's functional.</div></div>
+          <div class="think-item"><div class="think-q">What was left out intentionally?</div><div class="think-a">Social features, workout programs, nutrition tracking. Each one makes the product harder to start. FitLog is a logger, not a coach. Knowing the difference is the product decision.</div></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -765,9 +996,25 @@
   </div>
 </section>
 
-<footer>Gaurav Kishore · Built with intent · 2026 · <a href="mailto:gaurav202kishore@gmail.com" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'">gaurav202kishore@gmail.com</a></footer>
+<footer>Gaurav Kishore · Built with intent · 2026 · <a href="/cdn-cgi/l/email-protection#157274606774632725277e7c667d7a6770557278747c793b767a78" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'"><span class="__cf_email__" data-cfemail="402721353221367270722b2933282f322500272d21292c6e232f2d">[email&#160;protected]</span></a></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const _projects = ['nearby', 'clearnotes', 'fitlog'];
+  function toggleThink(id) {
+    const card = document.getElementById('card-' + id);
+    const panel = document.getElementById('think-' + id);
+    const isActive = card.classList.contains('active');
+    _projects.forEach(p => {
+      document.getElementById('card-' + p).classList.remove('active');
+      document.getElementById('think-' + p).classList.remove('open');
+    });
+    if (!isActive) {
+      card.classList.add('active');
+      panel.classList.add('open');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
   function toggleMenu() {
     const h = document.getElementById('hamburger');
     const m = document.getElementById('mobile-menu');
@@ -824,7 +1071,7 @@
     <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
     <div class="resume-preview">
       <div class="resume-preview-label">Message preview</div>
-      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from">your@email.com</span></div>
+      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aad3c5dfd8eacfc7cbc3c684c9c5c7">[email&#160;protected]</a></span></div>
     </div>
     <button class="resume-send-btn" onclick="sendResumeRequest()">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -834,7 +1081,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function openResumeModal() {
     document.getElementById('requester-email').value = '';
     document.getElementById('preview-from').textContent = 'your@email.com';
@@ -856,15 +1103,4 @@
     if (!email || !email.includes('@')) {
       const inp = document.getElementById('requester-email');
       inp.focus(); inp.style.borderColor = '#C2410C';
-      setTimeout(() => inp.style.borderColor = '', 1500);
-      return;
-    }
-    const subject = encodeURIComponent('Resume Request — ' + email);
-    const body = encodeURIComponent('Hi Gaurav,\n\nI came across your portfolio and would like to request your resume. Please share it at your convenience.\n\n— ' + email);
-    window.location.href = 'mailto:gaurav202kishore@gmail.com?subject=' + subject + '&body=' + body;
-    setTimeout(closeResumeModal, 1000);
-  }
-</script>
-
-</body>
-</html>
+      setTimeo
