@@ -230,7 +230,7 @@
     .blog-read { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--accent); margin-top: 10px; display: inline-flex; align-items: center; gap: 4px; }
 
     /* BLOG POST MODAL */
-    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 9998; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
     .blog-overlay.open { display: flex; }
     .blog-post { background: var(--paper); max-width: 680px; width: 100%; border-radius: 4px; padding: 3rem 3rem 4rem; margin: auto; position: relative; }
     .blog-post-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--muted); line-height: 1; font-family: var(--sans); }
@@ -285,7 +285,7 @@
     .clink.primary:hover { background: #A83509; border-color: #A83509; }
 
     /* RESUME MODAL */
-    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
     .resume-modal-overlay.open { opacity: 1; pointer-events: all; }
     .resume-modal { background: var(--paper); max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--rule); padding: 2rem; transform: translateY(16px); transition: transform 0.25s; }
     .resume-modal-overlay.open .resume-modal { transform: translateY(0); }
@@ -586,7 +586,7 @@
     <div class="projects-list">
 
       <!-- CARD 1: NEARBY -->
-      <div class="pcard fade active" id="card-nearby" onclick="toggleThink('nearby')">
+      <div class="pcard fade" id="card-nearby" onclick="toggleThink('nearby')">
         <div class="pcard-viewport">
           <div class="vp-browser">
             <div class="vp-bar">
@@ -716,7 +716,7 @@
     </div>
 
     <!-- THINKING PANELS -->
-    <div class="think-panel open" id="think-nearby">
+    <div class="think-panel" id="think-nearby">
       <div class="think-inner">
         <div class="think-col">
           <div class="think-tag">The problem</div>
@@ -998,7 +998,7 @@
 
 <footer>Gaurav Kishore · Built with intent · 2026 · <a href="/cdn-cgi/l/email-protection#157274606774632725277e7c667d7a6770557278747c793b767a78" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'"><span class="__cf_email__" data-cfemail="402721353221367270722b2933282f322500272d21292c6e232f2d">[email&#160;protected]</span></a></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const _projects = ['nearby', 'clearnotes', 'fitlog'];
   function toggleThink(id) {
     const card = document.getElementById('card-' + id);
