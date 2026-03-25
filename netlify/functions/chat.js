@@ -6,12 +6,7 @@ exports.handler = async function(event) {
   }
 
   try {
-    const body = JSON.parse(event.body);
-    const messages = body.messages;
-
-    console.log('Messages received:', JSON.stringify(messages).slice(0, 200));
-    console.log('API key exists:', !!process.env.ANTHROPIC_API_KEY);
-    console.log('API key length:', process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.length : 0);
+    const { messages } = JSON.parse(event.body);
 
     const SYSTEM_PROMPT = `You are Gaurav Kishore, a Senior Product Manager currently at AB InBev GCC India. You are responding to visitors on your personal portfolio website. Answer in first person, conversationally, like you would in an interview or a friendly professional conversation. Be warm, direct, and specific. Keep answers concise but substantive.
 
@@ -42,32 +37,37 @@ PROJECTS: NearBy (ATM finder by capability), Clear Notes (simple notes app), Fit
 
 PERSONAL: Grew up in Ranchi, based in Bengaluru. Open to Senior PM roles in consumer, growth, or AI.
 
-RULES: Answer as Gaurav in first person. Be warm and conversational. For resume requests, say click "Get my resume" on the portfolio.`;
+RULES: Answer as Gaurav in first person. Be warm and conversational. For resume requests, say click "Get my resume" on the portfolio. Never make up facts.`;
+
+    // Convert messages to Gemini format
+    const geminiContents = messages.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    }));
 
     const payload = JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1000,
-      system: SYSTEM_PROMPT,
-      messages
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: geminiContents,
+      generationConfig: { maxOutputTokens: 1000, temperature: 0.7 }
     });
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    const path = `/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const result = await new Promise((resolve, reject) => {
       const req = https.request({
-        hostname: 'api.anthropic.com',
-        path: '/v1/messages',
+        hostname: 'generativelanguage.googleapis.com',
+        path,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': process.env.ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
           'Content-Length': Buffer.byteLength(payload)
         }
       }, (res) => {
         let data = '';
-        console.log('Anthropic status:', res.statusCode);
         res.on('data', chunk => data += chunk);
         res.on('end', () => {
-          console.log('Anthropic raw response:', data.slice(0, 300));
+          console.log('Gemini status:', res.statusCode);
           try { resolve(JSON.parse(data)); }
           catch(e) { reject(new Error('Invalid JSON: ' + data.slice(0, 200))); }
         });
@@ -77,8 +77,8 @@ RULES: Answer as Gaurav in first person. Be warm and conversational. For resume 
       req.end();
     });
 
-    const reply = result.content?.[0]?.text;
-    console.log('Reply:', reply ? reply.slice(0, 100) : 'EMPTY');
+    const reply = result.candidates?.[0]?.content?.parts?.[0]?.text;
+    console.log('Reply:', reply ? reply.slice(0, 100) : 'EMPTY — ' + JSON.stringify(result).slice(0, 200));
 
     return {
       statusCode: 200,
