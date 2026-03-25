@@ -1384,7 +1384,7 @@ IMPORTANT RULES:
     showTyping();
 
     try {
-      const response = await fetch('/.netlify/functions/chat', {
+      const response = await fetch('https://gaurav-chat-5fuss9oh3-gaurav404kishore-maxs-projects.vercel.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: chatHistory })
