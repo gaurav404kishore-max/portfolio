@@ -95,9 +95,9 @@
     .chapter-toggle.open { transform: rotate(45deg); color: var(--accent); }
 
     /* COMPANY LOGOS */
-    .company-logo { height: 28px; width: auto; max-width: 120px; display: block; object-fit: contain; }
-    .company-logo-light { opacity: 1; }
-    .company-logo-dark { opacity: 1; }
+    .company-logo { height: 24px; width: auto; display: block; object-fit: contain; }
+    .company-logo-light { opacity: 0.85; }
+    .company-logo-dark { mix-blend-mode: multiply; opacity: 0.9; border-radius: 2px; }
     .company-logo-text { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink-mid); }
 
     .chapter-body { display: none; padding-bottom: 2rem; }
@@ -122,7 +122,7 @@
 
     /* PROJECTS */
     #projects { background: var(--paper-dark); }
-    /* PROJECTS — new card grid */
+    /* PROJECTS — card grid */
     .projects-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .pcard { background: #1A1408; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: 1.5px solid transparent; position: relative; }
     .pcard:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
@@ -161,7 +161,6 @@
     .think-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .think-q { font-family: var(--sans); font-size: 11px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
     .think-a { font-family: var(--body); font-size: 12px; color: #5A5040; line-height: 1.65; }
-    /* viewport mini UI */
     .nearby-preview { background:#fff; height:100%; display:flex; flex-direction:column; }
     .np-sb{background:#fff;padding:4px 10px 2px;display:flex;justify-content:space-between;font-size:6px;color:#999;}
     .np-search{margin:4px 8px;background:#F7F7F7;border-radius:20px;padding:5px 10px;display:flex;align-items:center;gap:5px;border:1px solid #E8E8E8;}
@@ -216,6 +215,12 @@
     .fl-session-name{font-size:6px;color:#fff;}
     .fl-session-meta{font-size:5px;color:#555;}
     @media (max-width: 700px) { .projects-list { grid-template-columns: 1fr; } .think-inner { grid-template-columns: 1fr; } .think-col:first-child { border-right: none; border-bottom: 1px solid #C8BEA8; } }
+    .project-desc { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--muted); line-height: 1.65; }
+    .project-link { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; letter-spacing: 0.02em; transition: gap 0.15s; }
+    .project-link:hover { gap: 7px; }
+    .project-link-muted { font-family: var(--sans); font-size: 12px; color: var(--faint); margin-top: 10px; display: inline-block; font-style: italic; }
+    .project-pills { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+    .ppill { font-family: var(--sans); font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
 
     /* BLOG */
     #blog { background: var(--paper); }
@@ -230,7 +235,7 @@
     .blog-read { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--accent); margin-top: 10px; display: inline-flex; align-items: center; gap: 4px; }
 
     /* BLOG POST MODAL */
-    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 9998; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+    .blog-overlay { display: none; position: fixed; inset: 0; background: rgba(26,20,8,0.6); z-index: 200; align-items: flex-start; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
     .blog-overlay.open { display: flex; }
     .blog-post { background: var(--paper); max-width: 680px; width: 100%; border-radius: 4px; padding: 3rem 3rem 4rem; margin: auto; position: relative; }
     .blog-post-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--muted); line-height: 1; font-family: var(--sans); }
@@ -285,7 +290,7 @@
     .clink.primary:hover { background: #A83509; border-color: #A83509; }
 
     /* RESUME MODAL */
-    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
     .resume-modal-overlay.open { opacity: 1; pointer-events: all; }
     .resume-modal { background: var(--paper); max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--rule); padding: 2rem; transform: translateY(16px); transition: transform 0.25s; }
     .resume-modal-overlay.open .resume-modal { transform: translateY(0); }
@@ -338,7 +343,7 @@
       .masthead-grid { grid-template-columns: 1fr 160px; gap: 2rem; }
       .masthead-name { font-size: clamp(44px, 7vw, 72px); }
       .chapter-right { gap: 4px; }
-      .company-logo { height: 36px; }
+      .company-logo { height: 18px; }
     }
 
     /* RESPONSIVE — MOBILE */
@@ -349,7 +354,7 @@
       .stat-rule-inner { flex-wrap: wrap; gap: 1rem; }
       .stat-item { border-right: none; flex: none; width: 45%; padding: 0; text-align: left; }
       .chapter-right { display: none; }
-      .project-row, .blog-row { grid-template-columns: 1fr; }
+      .blog-row { grid-template-columns: 1fr; }
       .edu-row { grid-template-columns: 1fr; gap: 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -404,7 +409,7 @@
     <div class="masthead-grid">
       <div>
         <h1 class="masthead-name">Gaurav<br>Kishore</h1>
-        <p class="masthead-deck">"I've spent my career defining product strategy, launching new verticals, and scaling operations across fintech, ecommerce, and AI — in markets that move fast and forgive nothing."</p>
+        <p class="masthead-deck">"I've spent my career turning unstructured growth problems into clean product decisions — across telecom, ecommerce, and now AI."</p>
         <div class="masthead-byline">
           <span style="color:var(--muted);font-family:var(--sans);font-size:12px;display:inline-flex;align-items:center;gap:4px;">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -430,9 +435,9 @@
 <!-- STAT RULE -->
 <div class="stat-rule fade">
   <div class="stat-rule-inner">
-    <div class="stat-item"><div class="stat-n">$60M+</div><div class="stat-l">Revenue portfolio owned</div></div>
-    <div class="stat-item"><div class="stat-n">5</div><div class="stat-l">Markets operated across</div></div>
-    <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">New verticals launched</div></div>
+    <div class="stat-item"><div class="stat-n">$60M+</div><div class="stat-l">Revenue influenced</div></div>
+    <div class="stat-item"><div class="stat-n">30+</div><div class="stat-l">Experiments shipped</div></div>
+    <div class="stat-item"><div class="stat-n">1,000+</div><div class="stat-l">Platform users scaled</div></div>
   </div>
 </div>
 
@@ -441,9 +446,8 @@
   <div class="inner">
     <div class="section-head fade"><span class="section-label">About</span><span class="section-rule"></span></div>
     <div class="about-body fade">
-      <p class="about-para">I'm a Product and Strategy PM, based in Bengaluru — though I grew up in Ranchi, where the hills were always close. I've worked across some of India's most demanding product environments — Swiggy, Airtel Finance, a five-market ecommerce business, and now a global AI platform at AB InBev.</p>
-      <p class="about-para">My work has consistently sat at the intersection of strategy and execution: defining where a product should play, launching new verticals from zero, and tracking market dynamics to keep roadmaps honest. I've scoped and shipped new revenue streams, built go-to-market strategies for new markets, and translated competitive intelligence into product decisions — not just decks.</p>
-      <p class="about-para">I tend to stay in the problem longer than most people are comfortable with. Not because I'm slow, but because I've found that most product decisions go wrong not at execution, but much earlier — when the problem wasn't understood well enough. Solutions come in versions. The right problem, if you've found it, tends to stay constant.</p>
+      <p class="about-para">I'm a Consumer and Growth PM, based in Bengaluru — though I grew up in Ranchi, where the hills were always close. I've worked across some of India's most demanding product environments — Swiggy, Airtel, a multi-market ecommerce business, and now a global AI platform at AB InBev.</p>
+      <p class="about-para">I tend to stay in the problem longer than most people are comfortable with. Not because I'm slow, but because I've found that most product decisions go wrong not at the execution stage, but much earlier — when the problem itself wasn't understood well enough. Solutions come in versions. The right problem, if you've found it, tends to stay constant.</p>
       <p class="about-para">Outside of work, I still find myself drawn to the mountains when I can.</p>
     </div>
   </div>
@@ -459,7 +463,7 @@
       <div class="chapter-head" onclick="toggleChapter(this)">
         <div class="chapter-left">
           <div class="chapter-num">Chapter 01</div>
-          <div class="chapter-role">Defining category strategy and launching new revenue verticals at scale</div>
+          <div class="chapter-role">Learning the craft at one of India's most demanding consumer apps</div>
         </div>
         <div class="chapter-right">
           <img src="logo-swiggy.png" alt="Swiggy" class="company-logo company-logo-light">
@@ -468,7 +472,7 @@
         </div>
       </div>
       <div class="chapter-body">
-        <p class="chapter-narrative">My first product role — and a crash course in strategy under pressure. I defined the category growth strategy for Swiggy's grocery and fresh produce verticals, built brand monetisation as a net-new revenue stream, and shipped the infrastructure that kept the platform stable during COVID-era demand spikes.</p>
+        <p class="chapter-narrative">My first product role. I was dropped into Swiggy's grocery vertical with one mandate — grow. What followed was a crash course in consumer behaviour, merchandising psychology, and the art of moving fast without breaking things.</p>
         <div class="chapter-nums">
           <div class="cn"><span class="cn-n">7×</span><span class="cn-l">DAU growth, grocery</span></div>
           <div class="cn"><span class="cn-n">46%</span><span class="cn-l">Add-to-cart lift</span></div>
@@ -479,8 +483,8 @@
           See full details
         </button>
         <div class="chapter-details">
-          <p class="chapter-narrative" style="margin-bottom:1.25rem">I defined Swiggy's category growth strategy for grocery and F&V — scaling DAU 7× and AOV 2.5× through merchandising architecture, pricing strategy, and targeted communications. Alongside that, I scoped and launched brand monetisation as a new revenue vertical — offers, sampling, in-app placements — which grew to 3% of overall grocery revenue. When COVID hit and traffic spiked unpredictably, I shipped demand-shaping infrastructure that kept operations from buckling. I also rebuilt the homepage discovery experience and search ranking, pushing add-to-cart up 46% and 31% respectively — both driven by customer behaviour signals, not instinct.</p>
-          <div class="chapter-tags"><span class="ctag">Category strategy</span><span class="ctag">New vertical launch</span><span class="ctag">Revenue ownership</span><span class="ctag">Market expansion</span></div>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">The work was scrappy and fast. I rebuilt the homepage discovery experience from scratch, pushed add-to-cart up 46%, and scaled the catalogue from 300 to 5,000+ SKUs across six cities. On the monetisation side, I built Swiggy's brand partnership products — offers, sampling, in-app placements — which grew to contribute 3% of overall grocery revenue. When COVID hit and traffic spiked unpredictably, I shipped demand-shaping infrastructure that kept the business from buckling under its own growth. By the time I left, DAU had grown 7× and average order value had more than doubled.</p>
+          <div class="chapter-tags"><span class="ctag">Consumer growth</span><span class="ctag">Merchandising</span><span class="ctag">Search & discovery</span><span class="ctag">Experimentation</span></div>
         </div>
       </div>
     </div>
@@ -490,7 +494,7 @@
       <div class="chapter-head" onclick="toggleChapter(this)">
         <div class="chapter-left">
           <div class="chapter-num">Chapter 02</div>
-          <div class="chapter-role">Launching a fintech vertical and building financial product strategy for 375M+ users</div>
+          <div class="chapter-role">Building the growth engine for 300M+ customers, from scratch</div>
         </div>
         <div class="chapter-right">
           <img src="logo-airtel.png" alt="Airtel" class="company-logo company-logo-dark">
@@ -499,19 +503,19 @@
         </div>
       </div>
       <div class="chapter-body">
-        <p class="chapter-narrative">Moving from food-tech to fintech meant a new kind of complexity. I owned the Airtel Finance product — a digital investment and lending platform embedded inside India's largest telecom app. The mandate was to define the product strategy, scope new financial verticals, and grow a fintech product from early stage to scale within a regulated environment.</p>
+        <p class="chapter-narrative">Moving from food-tech to telecom meant a new scale entirely. I built Airtel's CLM platform from scratch — a system that automated lifecycle journeys across Prepaid, Postpaid, Broadband, and DTH. The job wasn't just shipping features; it was building the infrastructure for growth itself.</p>
         <div class="chapter-nums">
-          <div class="cn"><span class="cn-n">500K</span><span class="cn-l">Active financial users</span></div>
-          <div class="cn"><span class="cn-n">1.8M</span><span class="cn-l">Product installs</span></div>
-          <div class="cn"><span class="cn-n">3×</span><span class="cn-l">Financial verticals launched</span></div>
+          <div class="cn"><span class="cn-n">2.3×</span><span class="cn-l">App activation</span></div>
+          <div class="cn"><span class="cn-n">70%</span><span class="cn-l">Go-live time saved</span></div>
+          <div class="cn"><span class="cn-n">20%</span><span class="cn-l">Churn reduced</span></div>
         </div>
         <button class="detail-toggle" onclick="toggleDetails(event, this)">
           <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 1l4 4-4 4"/></svg>
           See full details
         </button>
         <div class="chapter-details">
-          <p class="chapter-narrative" style="margin-bottom:1.25rem">I defined the product proposition and go-to-market strategy for Airtel Finance — a fintech platform serving Airtel's 375M+ subscriber base. I scoped and launched three financial verticals: Gold SIP (digital investment), fixed deposits, and MF-backed loans — translating complex financial product mechanics into accessible consumer experiences. I analysed the competitive fintech landscape to identify product gaps and informed the roadmap accordingly. The financial activation funnel was rebuilt end-to-end — KYC completion from 40% to 65%, bank linking from 35% to 60% — through structured user research and phased fixes. Every flow was built compliance-first, working directly with risk, legal, and partner NBFCs to meet RBI requirements by design. The product reached 500K active financial users and 1.8M installs.</p>
-          <div class="chapter-tags"><span class="ctag">Fintech strategy</span><span class="ctag">New vertical launch</span><span class="ctag">Go-to-market</span><span class="ctag">Regulated products</span></div>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">I built Airtel's CLM platform from the ground up — integrating C360, Airtel IQ, Salesforce, and provisioning systems into a single lifecycle engine. The onboarding work was particularly meaningful: a WhatsApp-led port-in journey reduced drop-offs by 31%, and behavioral nudges pushed app activation up 2.3× with early recharges improving 27%. I also built the campaign template system that cut go-live time by 70%, turning what used to be a two-week process into hours. On retention, ML models identifying at-risk cohorts helped bring churn down 20%. Managed a $150K budget throughout with 20% higher ROI than target.</p>
+          <div class="chapter-tags"><span class="ctag">CLM platforms</span><span class="ctag">0 to 1 build</span><span class="ctag">Lifecycle growth</span><span class="ctag">Retention</span></div>
         </div>
       </div>
     </div>
@@ -521,7 +525,7 @@
       <div class="chapter-head" onclick="toggleChapter(this)">
         <div class="chapter-left">
           <div class="chapter-num">Chapter 03</div>
-          <div class="chapter-role">Defining strategy and launching new verticals across a five-market ecommerce platform</div>
+          <div class="chapter-role">Owning revenue across a multi-market ecommerce portfolio</div>
         </div>
         <div class="chapter-right">
           <img src="logo-bayport.png" alt="Group Bayport" class="company-logo company-logo-dark">
@@ -530,7 +534,7 @@
         </div>
       </div>
       <div class="chapter-body">
-        <p class="chapter-narrative">The broadest mandate I'd had — owning product strategy across a $60M ecommerce platform operating in five markets. Beyond execution, this was where I learned to think about where to play: which verticals to enter, how to localise for different markets, and how to track competitive dynamics to keep the roadmap ahead of the market.</p>
+        <p class="chapter-narrative">For the first time, I owned a P&L. I led revenue product strategy across acquisition, activation, and monetisation — managing a team of 4 APMs and clocking $60M in revenue. The complexity of multi-country ecommerce, with its varied payment rails, logistics partners, and customer behaviours, made every decision consequential.</p>
         <div class="chapter-nums">
           <div class="cn"><span class="cn-n">$60M</span><span class="cn-l">Revenue influenced</span></div>
           <div class="cn"><span class="cn-n">45%</span><span class="cn-l">Cart-to-checkout lift</span></div>
@@ -541,8 +545,8 @@
           See full details
         </button>
         <div class="chapter-details">
-          <p class="chapter-narrative" style="margin-bottom:1.25rem">I defined and executed product strategy across five markets — UK, US, AUS, and beyond — owning a $60M revenue portfolio with a team of 4 APMs. The most significant strategic move was scoping and launching insurance as a net-new revenue vertical for the platform — defined the product proposition, commercial model, and go-to-market approach from scratch. The result was $500K in revenue within 60 days and 42% adoption. I also tracked competitor positioning across the custom furniture cover category globally, feeding market intelligence directly into roadmap decisions and pricing strategy. Localisation across markets required adapting checkout, payments, and discovery to market-specific user behaviour — a 45% improvement in cart-to-checkout followed. Throughout, I ran 30+ experiments using data and customer feedback as primary inputs, improving conversion 9% year-on-year.</p>
-          <div class="chapter-tags"><span class="ctag">Multi-market strategy</span><span class="ctag">New vertical launch</span><span class="ctag">Competitive intelligence</span><span class="ctag">Go-to-market</span></div>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">The scope here was broader than anything I'd done before. Across acquisition, activation, and monetisation, I ran 30+ A/B and multivariate experiments that improved conversion 9% year-on-year. The checkout work was the most impactful — integrating Stripe payment intent and additional payment methods pushed cart-to-checkout up 45%. I also launched an insurance revenue stream for Coversandall.com across multiple countries, hitting $500K in 60 days with 42% product adoption. Toward the end of my time here, I led AI Agent-powered content automation that drove 23% more engagement on product pages — an early signal of where the industry was heading.</p>
+          <div class="chapter-tags"><span class="ctag">Revenue ownership</span><span class="ctag">Multi-market</span><span class="ctag">Conversion optimisation</span><span class="ctag">AI automation</span></div>
         </div>
       </div>
     </div>
@@ -552,7 +556,7 @@
       <div class="chapter-head" onclick="toggleChapter(this)">
         <div class="chapter-left">
           <div class="chapter-num">Chapter 04</div>
-          <div class="chapter-role">Building a global product strategy for AI-powered decision-making at scale</div>
+          <div class="chapter-role">Rethinking how large organisations run experiments, with GenAI</div>
         </div>
         <div class="chapter-right">
           <img src="logo-abinbev.png" alt="AB InBev" class="company-logo company-logo-dark">
@@ -561,7 +565,7 @@
         </div>
       </div>
       <div class="chapter-body">
-        <p class="chapter-narrative">The current chapter. At AB InBev, I define product strategy for a GenAI-powered experimentation platform used by 1,000+ users across 10+ global markets. The challenge isn't just product — it's defining how a large organisation should make faster, better decisions at a global scale, and building the roadmap to get there.</p>
+        <p class="chapter-narrative">The current chapter. At AB InBev, I'm working on something that genuinely excites me — a GenAI-powered experimentation platform used by 1,000+ users globally. The challenge here isn't just product; it's rethinking how large organisations make decisions faster, with less friction and more confidence.</p>
         <div class="chapter-nums">
           <div class="cn"><span class="cn-n">1,000+</span><span class="cn-l">Global users</span></div>
           <div class="cn"><span class="cn-n">70%</span><span class="cn-l">Experiment time saved</span></div>
@@ -572,8 +576,8 @@
           See full details
         </button>
         <div class="chapter-details">
-          <p class="chapter-narrative" style="margin-bottom:1.25rem">I own the product strategy and roadmap for a GenAI-powered experimentation platform serving 1,000+ users across 10+ global markets. The work involves defining which capabilities to build next, aligning engineering and data science stakeholders across geographies, and translating complex AI workflows into scalable, self-serve product experiences. The platform started at 100 users — within three months of launching self-serve workflows, adoption scaled 10× without adding headcount. LLM-based test generation cut experiment cycle time by 70%, enabling global product teams to move faster with more confidence. This is the most technically ambitious and strategically complex work I've done — and it's still the current chapter.</p>
-          <div class="chapter-tags"><span class="ctag">Product strategy</span><span class="ctag">Global operations</span><span class="ctag">GenAI</span><span class="ctag">Roadmap ownership</span></div>
+          <p class="chapter-narrative" style="margin-bottom:1.25rem">The platform started small — a handful of teams, a narrow use case. Within three months of launching self-serve experiment workflows, adoption went from 100 to 1,000+ users globally. The core product insight was simple: most people don't run experiments because the setup is too slow and the diagnostics too opaque. We solved both — LLM-based test generation cut experiment time by 70%, and automated failure diagnostics meant teams could learn and iterate without needing a data scientist in the room. This is still the current chapter, and the most technically ambitious work I've done.</p>
+          <div class="chapter-tags"><span class="ctag">GenAI</span><span class="ctag">LLMs</span><span class="ctag">Experimentation platforms</span><span class="ctag">Enterprise SaaS</span></div>
         </div>
       </div>
     </div>
@@ -586,14 +590,10 @@
     <div class="section-head fade"><span class="section-label">Built on weekends</span><span class="section-rule"></span></div>
     <div class="projects-list">
 
-      <!-- CARD 1: NEARBY -->
-      <div class="pcard fade" id="card-nearby" onclick="toggleThink('nearby')">
+      <div class="pcard fade active" id="card-nearby" onclick="toggleThink('nearby')">
         <div class="pcard-viewport">
           <div class="vp-browser">
-            <div class="vp-bar">
-              <div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div>
-              <div class="vp-url">gaurav404kishore-max.github.io/Nearby</div>
-            </div>
+            <div class="vp-bar"><div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div><div class="vp-url">gaurav404kishore-max.github.io/Nearby</div></div>
             <div class="vp-body">
               <div class="nearby-preview">
                 <div class="np-sb"><span>9:41</span><span>●●●</span></div>
@@ -605,168 +605,68 @@
                 </div>
                 <div class="np-pills"><div class="np-pill a">Open now</div><div class="np-pill">Cash deposit</div><div class="np-pill">SBI</div></div>
                 <div class="np-rcount"><strong>14 ATMs</strong> nearby</div>
-                <div class="np-card">
-                  <div class="np-card-img"><svg viewBox="0 0 24 24" fill="none" stroke="#1A6FA8" stroke-width="1"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="12" cy="16" r="2"/></svg>
-                    <div class="np-badge"><div class="np-badge-dot"></div>Open · 24 hrs</div>
-                    <div class="np-dist">80m</div>
-                  </div>
-                  <div class="np-card-name">SBI ATM — Koramangala</div>
-                  <div class="np-card-meta">80m away · Updated 2 hrs ago</div>
-                  <div class="np-caps"><span class="np-cap g">Cash deposit</span><span class="np-cap b">Cardless</span><span class="np-cap gr">Cash ok</span></div>
-                </div>
+                <div class="np-card"><div class="np-card-img"><svg viewBox="0 0 24 24" fill="none" stroke="#1A6FA8" stroke-width="1"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="12" cy="16" r="2"/></svg><div class="np-badge"><div class="np-badge-dot"></div>Open · 24 hrs</div><div class="np-dist">80m</div></div><div class="np-card-name">SBI ATM — Koramangala</div><div class="np-card-meta">80m away</div><div class="np-caps"><span class="np-cap g">Cash deposit</span><span class="np-cap b">Cardless</span><span class="np-cap gr">Cash ok</span></div></div>
               </div>
             </div>
           </div>
         </div>
         <div class="pcard-body">
-          <div class="pcard-top">
-            <div class="live-badge"><div class="live-dot"></div>Live</div>
-            <div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
+          <div class="pcard-top"><div class="live-badge"><div class="live-dot"></div>Live</div><div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
           <div class="pcard-name">NearBy — Find What You Actually Need</div>
-          <div class="pcard-footer">
-            <div class="pcard-pills"><span class="pcpill">OpenStreetMap</span><span class="pcpill">Overpass API</span></div>
-            <a href="https://gaurav404kishore-max.github.io/Nearby/" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
+          <div class="pcard-footer"><div class="pcard-pills"><span class="pcpill">OpenStreetMap</span><span class="pcpill">Overpass API</span></div><a href="https://gaurav404kishore-max.github.io/Nearby/" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
         </div>
       </div>
 
-      <!-- CARD 2: CLEAR NOTES -->
       <div class="pcard fade" id="card-clearnotes" onclick="toggleThink('clearnotes')">
         <div class="pcard-viewport">
           <div class="vp-browser">
-            <div class="vp-bar">
-              <div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div>
-              <div class="vp-url">clear-notes.netlify.app</div>
-            </div>
+            <div class="vp-bar"><div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div><div class="vp-url">clear-notes.netlify.app</div></div>
             <div class="vp-body">
               <div class="cn-preview">
                 <div class="cn-hdr"><div class="cn-title">Clear Notes</div><div class="cn-sub">3 notes · 1 overdue</div></div>
                 <div class="cn-notes">
-                  <div class="cn-note" style="background:#FFF3E0"><div class="cn-note-text">Call dentist before Thursday — confirm appointment time</div><div class="cn-note-meta">Reminder: Thu 10am</div></div>
-                  <div class="cn-note" style="background:#F3E5F5"><div class="cn-note-text">Pick up dry cleaning on the way home</div><div class="cn-note-meta">No reminder</div></div>
-                  <div class="cn-note" style="background:#E8F5E9"><div class="cn-note-text">Review Q3 OKRs before Monday standup</div><div class="cn-note-meta">Reminder: Mon 9am</div></div>
-                  <div class="cn-note" style="background:#E3F2FD"><div class="cn-note-text">Pay electricity bill — due date is the 15th</div><div class="cn-note-meta">⚠ Overdue</div></div>
+                  <div class="cn-note" style="background:#FFF3E0"><div class="cn-note-text">Call dentist before Thursday</div><div class="cn-note-meta">Reminder: Thu 10am</div></div>
+                  <div class="cn-note" style="background:#F3E5F5"><div class="cn-note-text">Pick up dry cleaning</div><div class="cn-note-meta">No reminder</div></div>
+                  <div class="cn-note" style="background:#E8F5E9"><div class="cn-note-text">Review Q3 OKRs before Monday</div><div class="cn-note-meta">Reminder: Mon 9am</div></div>
+                  <div class="cn-note" style="background:#E3F2FD"><div class="cn-note-text">Pay electricity bill — due 15th</div><div class="cn-note-meta">⚠ Overdue</div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="pcard-body">
-          <div class="pcard-top">
-            <div class="live-badge"><div class="live-dot"></div>Live</div>
-            <div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
+          <div class="pcard-top"><div class="live-badge"><div class="live-dot"></div>Live</div><div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
           <div class="pcard-name">Clear Notes — Dead-simple Notes & Reminders</div>
-          <div class="pcard-footer">
-            <div class="pcard-pills"><span class="pcpill">Supabase</span><span class="pcpill">WebAuthn</span></div>
-            <a href="https://clear-notes.netlify.app" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
+          <div class="pcard-footer"><div class="pcard-pills"><span class="pcpill">Supabase</span><span class="pcpill">WebAuthn</span></div><a href="https://clear-notes.netlify.app" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
         </div>
       </div>
 
-      <!-- CARD 3: FITLOG -->
       <div class="pcard fade" id="card-fitlog" onclick="toggleThink('fitlog')">
         <div class="pcard-viewport">
           <div class="vp-browser">
-            <div class="vp-bar">
-              <div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div>
-              <div class="vp-url">fitelo.netlify.app</div>
-            </div>
+            <div class="vp-bar"><div class="vp-dots"><div class="vp-dot" style="background:#E24B4A"></div><div class="vp-dot" style="background:#EF9F27"></div><div class="vp-dot" style="background:#97C459"></div></div><div class="vp-url">fitelo.netlify.app</div></div>
             <div class="vp-body">
               <div class="fl-preview">
                 <div class="fl-hdr"><span class="fl-title">FITLOG</span><span class="fl-streak">🔥 12 day streak</span></div>
-                <div class="fl-stats">
-                  <div><span class="fl-stat-n" style="color:#E8FF00">24</span><span class="fl-stat-l">Sessions</span></div>
-                  <div><span class="fl-stat-n" style="color:#00D4FF">18,420</span><span class="fl-stat-l">Volume kg</span></div>
-                  <div><span class="fl-stat-n" style="color:#E8FF00">42</span><span class="fl-stat-l">km run</span></div>
-                </div>
-                <div class="fl-chart">
-                  <div class="fl-chart-lbl">This week</div>
-                  <div class="fl-bars">
-                    <div class="fl-bar" style="height:40%;background:#2A2A2A"></div>
-                    <div class="fl-bar" style="height:70%;background:#E8FF00"></div>
-                    <div class="fl-bar" style="height:55%;background:#2A2A2A"></div>
-                    <div class="fl-bar" style="height:90%;background:#E8FF00"></div>
-                    <div class="fl-bar" style="height:30%;background:#2A2A2A"></div>
-                    <div class="fl-bar" style="height:80%;background:#E8FF00"></div>
-                    <div class="fl-bar" style="height:60%;background:#E8FF00"></div>
-                  </div>
-                </div>
-                <div class="fl-sessions">
-                  <div class="fl-session"><span class="fl-session-name">Push day — chest & shoulders</span><span class="fl-session-meta">Today · 6 exercises</span></div>
-                  <div class="fl-session"><span class="fl-session-name">5km run — Cubbon Park</span><span class="fl-session-meta">Yesterday · 28:14</span></div>
-                </div>
+                <div class="fl-stats"><div><span class="fl-stat-n" style="color:#E8FF00">24</span><span class="fl-stat-l">Sessions</span></div><div><span class="fl-stat-n" style="color:#00D4FF">18,420</span><span class="fl-stat-l">Volume kg</span></div><div><span class="fl-stat-n" style="color:#E8FF00">42</span><span class="fl-stat-l">km run</span></div></div>
+                <div class="fl-chart"><div class="fl-chart-lbl">This week</div><div class="fl-bars"><div class="fl-bar" style="height:40%;background:#2A2A2A"></div><div class="fl-bar" style="height:70%;background:#E8FF00"></div><div class="fl-bar" style="height:55%;background:#2A2A2A"></div><div class="fl-bar" style="height:90%;background:#E8FF00"></div><div class="fl-bar" style="height:30%;background:#2A2A2A"></div><div class="fl-bar" style="height:80%;background:#E8FF00"></div><div class="fl-bar" style="height:60%;background:#E8FF00"></div></div></div>
+                <div class="fl-sessions"><div class="fl-session"><span class="fl-session-name">Push day — chest &amp; shoulders</span><span class="fl-session-meta">Today</span></div><div class="fl-session"><span class="fl-session-name">5km run — Cubbon Park</span><span class="fl-session-meta">Yesterday</span></div></div>
               </div>
             </div>
           </div>
         </div>
         <div class="pcard-body">
-          <div class="pcard-top">
-            <div class="live-badge"><div class="live-dot"></div>Live</div>
-            <div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </div>
+          <div class="pcard-top"><div class="live-badge"><div class="live-dot"></div>Live</div><div class="think-btn">Product thinking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
           <div class="pcard-name">FitLog — Fitness Tracker</div>
-          <div class="pcard-footer">
-            <div class="pcard-pills"><span class="pcpill">Claude API</span><span class="pcpill">localStorage</span></div>
-            <a href="https://fitelo.netlify.app/" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
-          </div>
+          <div class="pcard-footer"><div class="pcard-pills"><span class="pcpill">Claude API</span><span class="pcpill">localStorage</span></div><a href="https://fitelo.netlify.app/" target="_blank" onclick="event.stopPropagation()" class="pcard-cta">View live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
         </div>
       </div>
 
     </div>
 
-    <!-- THINKING PANELS -->
-    <div class="think-panel" id="think-nearby">
-      <div class="think-inner">
-        <div class="think-col">
-          <div class="think-tag">The problem</div>
-          <div class="think-item"><div class="think-q">Why does this exist?</div><div class="think-a">Google shows you where ATMs are. Not what they do. You walk 400m to an ATM and discover it only dispenses cash — not deposits. The information exists. It's never surfaced at the point of intent.</div></div>
-          <div class="think-item"><div class="think-q">Who is it for?</div><div class="think-a">Urban India, 25–45. High-intent, time-sensitive needs — depositing cash before a deadline, finding fuel late at night, a 24-hour pharmacy at 11pm. Zero tolerance for wrong results.</div></div>
-          <div class="think-item"><div class="think-q">North star metric</div><div class="think-a">Navigate taps per session. If someone taps navigate, the app did its job. That's the job to be done, done.</div></div>
-        </div>
-        <div class="think-col">
-          <div class="think-tag">Key decisions</div>
-          <div class="think-item"><div class="think-q">Why no ratings or reviews?</div><div class="think-a">Every feature that adds noise to a utility app is a failure of product thinking. You don't rate an ATM. Reviews increase cognitive load at the exact moment users need speed.</div></div>
-          <div class="think-item"><div class="think-q">Why list-first, not map-first?</div><div class="think-a">Distance ranking answers "which one should I go to" faster than a map. The map answers "where exactly" — that's step two, not step one.</div></div>
-          <div class="think-item"><div class="think-q">Why "Open now" always on by default?</div><div class="think-a">Nobody searches for a closed ATM intentionally. Defaulting to open removes one decision from an already urgent moment.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="think-panel" id="think-clearnotes">
-      <div class="think-inner">
-        <div class="think-col">
-          <div class="think-tag">The problem</div>
-          <div class="think-item"><div class="think-q">Why another notes app?</div><div class="think-a">Most notes apps are built for power users — folders, tags, collaboration, formatting. The gap is a notes app for people who just want to not forget things. No setup, no friction, nothing to learn.</div></div>
-          <div class="think-item"><div class="think-q">Who is it for?</div><div class="think-a">People who find Notion overwhelming and Reminders too bare. The in-between user — wants colour, wants reminders, doesn't want a system.</div></div>
-          <div class="think-item"><div class="think-q">North star metric</div><div class="think-a">7-day return rate. If someone comes back a week later, the app earned a place in their routine. That's the real test for any utility product.</div></div>
-        </div>
-        <div class="think-col">
-          <div class="think-tag">Key decisions</div>
-          <div class="think-item"><div class="think-q">Why biometric login?</div><div class="think-a">The #1 drop-off in personal apps is the login screen. Face ID removes the barrier entirely — if your phone is unlocked, you're in.</div></div>
-          <div class="think-item"><div class="think-q">Why colour-coded cards?</div><div class="think-a">Colour is faster to scan than text. Instead of reading every note title, you see urgency by colour instantly. One deliberate decision that changes how the whole app feels.</div></div>
-          <div class="think-item"><div class="think-q">What was left out intentionally?</div><div class="think-a">Folders, tags, search, sharing, collaboration. Each one was deliberately removed — because the core job is: write it, don't forget it.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="think-panel" id="think-fitlog">
-      <div class="think-inner">
-        <div class="think-col">
-          <div class="think-tag">The problem</div>
-          <div class="think-item"><div class="think-q">What's the real insight?</div><div class="think-a">Most fitness apps are built around goals and programs. FitLog is built around one thing: showing you your own pattern. No goals, no pressure — just your data, clearly laid out.</div></div>
-          <div class="think-item"><div class="think-q">Why AI for cardio parsing?</div><div class="think-a">Cardio data is messy — different apps export it differently. Instead of building 10 integrations, one AI prompt handles all formats. Deliberate use of AI where it reduces friction, not as a gimmick.</div></div>
-          <div class="think-item"><div class="think-q">North star metric</div><div class="think-a">Streak length. If users are logging every day, the app is genuinely useful. Streak is a proxy for habit formation — which is the real job here.</div></div>
-        </div>
-        <div class="think-col">
-          <div class="think-tag">Key decisions</div>
-          <div class="think-item"><div class="think-q">Why six time ranges?</div><div class="think-a">Different questions need different lenses. "Am I consistent?" needs weeks. "Is this month better?" needs months. Six ranges, one tap each.</div></div>
-          <div class="think-item"><div class="think-q">Why dark mode first?</div><div class="think-a">Most gym logging happens in poorly lit spaces — gym floors, early mornings. Dark mode isn't aesthetic here, it's functional.</div></div>
-          <div class="think-item"><div class="think-q">What was left out intentionally?</div><div class="think-a">Social features, workout programs, nutrition tracking. Each one makes the product harder to start. FitLog is a logger, not a coach. Knowing the difference is the product decision.</div></div>
-        </div>
-      </div>
-    </div>
+    <div class="think-panel open" id="think-nearby"><div class="think-inner"><div class="think-col"><div class="think-tag">The problem</div><div class="think-item"><div class="think-q">Why does this exist?</div><div class="think-a">Google shows you where ATMs are. Not what they do. You walk 400m to an ATM and discover it only dispenses cash — not deposits. The information exists. It's never surfaced at the point of intent.</div></div><div class="think-item"><div class="think-q">Who is it for?</div><div class="think-a">Urban India, 25–45. High-intent, time-sensitive needs — depositing cash before a deadline, finding fuel late at night, a 24-hour pharmacy at 11pm. Zero tolerance for wrong results.</div></div><div class="think-item"><div class="think-q">North star metric</div><div class="think-a">Navigate taps per session. If someone taps navigate, the app did its job.</div></div></div><div class="think-col"><div class="think-tag">Key decisions</div><div class="think-item"><div class="think-q">Why no ratings or reviews?</div><div class="think-a">Every feature that adds noise to a utility app is a failure of product thinking. You don't rate an ATM. Reviews increase cognitive load at the exact moment users need speed.</div></div><div class="think-item"><div class="think-q">Why list-first, not map-first?</div><div class="think-a">Distance ranking answers "which one should I go to" faster than a map. The map answers "where exactly" — that's step two, not step one.</div></div><div class="think-item"><div class="think-q">Why "Open now" always on by default?</div><div class="think-a">Nobody searches for a closed ATM intentionally. Defaulting to open removes one decision from an already urgent moment.</div></div></div></div></div>
+    <div class="think-panel" id="think-clearnotes"><div class="think-inner"><div class="think-col"><div class="think-tag">The problem</div><div class="think-item"><div class="think-q">Why another notes app?</div><div class="think-a">Most notes apps are built for power users — folders, tags, collaboration. The gap is a notes app for people who just want to not forget things. No setup, no friction, nothing to learn.</div></div><div class="think-item"><div class="think-q">Who is it for?</div><div class="think-a">People who find Notion overwhelming and Reminders too bare. The in-between user — wants colour, wants reminders, doesn't want a system.</div></div><div class="think-item"><div class="think-q">North star metric</div><div class="think-a">7-day return rate. If someone comes back a week later, the app earned a place in their routine.</div></div></div><div class="think-col"><div class="think-tag">Key decisions</div><div class="think-item"><div class="think-q">Why biometric login?</div><div class="think-a">The #1 drop-off in personal apps is the login screen. Face ID removes the barrier entirely — if your phone is unlocked, you're in.</div></div><div class="think-item"><div class="think-q">Why colour-coded cards?</div><div class="think-a">Colour is faster to scan than text. Instead of reading every note title, you see urgency by colour instantly.</div></div><div class="think-item"><div class="think-q">What was left out intentionally?</div><div class="think-a">Folders, tags, search, sharing, collaboration. Each one was deliberately removed — because the core job is: write it, don't forget it.</div></div></div></div></div>
+    <div class="think-panel" id="think-fitlog"><div class="think-inner"><div class="think-col"><div class="think-tag">The problem</div><div class="think-item"><div class="think-q">What's the real insight?</div><div class="think-a">Most fitness apps are built around goals. FitLog is built around one thing: showing you your own pattern. No goals, no pressure — just your data, clearly laid out.</div></div><div class="think-item"><div class="think-q">Why AI for cardio parsing?</div><div class="think-a">Cardio data is messy — different apps export differently. One AI prompt handles all formats. Deliberate use of AI where it reduces friction, not as a gimmick.</div></div><div class="think-item"><div class="think-q">North star metric</div><div class="think-a">Streak length. If users log every day, the app is genuinely useful. Streak is a proxy for habit formation.</div></div></div><div class="think-col"><div class="think-tag">Key decisions</div><div class="think-item"><div class="think-q">Why six time ranges?</div><div class="think-a">Different questions need different lenses. "Am I consistent?" needs weeks. "Is this month better?" needs months. Six ranges, one tap each.</div></div><div class="think-item"><div class="think-q">Why dark mode first?</div><div class="think-a">Most gym logging happens in poorly lit spaces. Dark mode isn't aesthetic here, it's functional.</div></div><div class="think-item"><div class="think-q">What was left out intentionally?</div><div class="think-a">Social features, programs, nutrition. FitLog is a logger, not a coach. Knowing the difference is the product decision.</div></div></div></div></div>
 
   </div>
 </section>
@@ -993,25 +893,9 @@
   </div>
 </section>
 
-<footer>Gaurav Kishore · Built with intent · 2026 · <a href="#" onclick="window.location.href='mai'+'lto:'+'gaurav202kishore'+'@'+'gmail.com';return false;" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'"><span class="__cf_email__" data-cfemail="472026323526317577752c2e342f28352207202a262e2b6924282a">[email&#160;protected]</span></a></footer>
+<footer>Gaurav Kishore · Built with intent · 2026 · <a href="#" onclick="window.location.href='mai'+'lto:'+'gaurav202kishore'+'@'+'gmail.com';return false;" style="color:#6B6044;text-decoration:none;transition:color 0.15s;" onmouseover="this.style.color='#C8BEA8'" onmouseout="this.style.color='#6B6044'">gaurav202kishore@gmail.com</a></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const _projects = ['nearby', 'clearnotes', 'fitlog'];
-  function toggleThink(id) {
-    const card = document.getElementById('card-' + id);
-    const panel = document.getElementById('think-' + id);
-    const isActive = card.classList.contains('active');
-    _projects.forEach(p => {
-      document.getElementById('card-' + p).classList.remove('active');
-      document.getElementById('think-' + p).classList.remove('open');
-    });
-    if (!isActive) {
-      card.classList.add('active');
-      panel.classList.add('open');
-      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
-    }
-  }
-
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleMenu() {
     const h = document.getElementById('hamburger');
     const m = document.getElementById('mobile-menu');
@@ -1056,6 +940,24 @@
   }, { threshold: 0.07 });
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
+  // Projects toggleThink
+  const _projects = ['nearby','clearnotes','fitlog'];
+  function toggleThink(id) {
+    const card = document.getElementById('card-' + id);
+    const panel = document.getElementById('think-' + id);
+    const isActive = card.classList.contains('active');
+    _projects.forEach(p => {
+      document.getElementById('card-' + p).classList.remove('active');
+      document.getElementById('think-' + p).classList.remove('open');
+    });
+    if (!isActive) {
+      card.classList.add('active');
+      panel.classList.add('open');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
+  // Resume modal
   function openResumeModal() {
     document.getElementById('requester-email').value = '';
     document.getElementById('preview-from').textContent = 'your@email.com';
@@ -1084,6 +986,77 @@
     const body = encodeURIComponent('Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.\n\n— ' + email);
     window.location.href = 'mailto:gaurav202kishore@gmail.com?subject=' + subject + '&body=' + body;
   }
+
+  // Chat
+  let chatHistory = [], chatOpen = false, isTyping = false;
+  function openChat() {
+    document.getElementById('chat-overlay').classList.add('open');
+    document.getElementById('chat-fab').style.display = 'none';
+    chatOpen = true;
+    setTimeout(() => document.getElementById('chat-input').focus(), 400);
+  }
+  function closeChat() {
+    document.getElementById('chat-overlay').classList.remove('open');
+    document.getElementById('chat-fab').style.display = 'flex';
+    chatOpen = false;
+  }
+  function closeChatOnBg(e) { if (e.target === document.getElementById('chat-overlay')) closeChat(); }
+  function askSuggestion(el) {
+    document.getElementById('chat-suggestions').style.display = 'none';
+    document.getElementById('chat-input').value = el.textContent;
+    sendMessage();
+  }
+  function handleChatKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+  function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
+  function appendMessage(role, text) {
+    const messages = document.getElementById('chat-messages');
+    const msg = document.createElement('div');
+    msg.className = 'msg ' + role;
+    const now = new Date();
+    const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+    msg.innerHTML = '<div class="msg-bubble">' + text.replace(/\n/g,'<br>') + '</div><div class="msg-time">' + time + '</div>';
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  function showTyping() {
+    const messages = document.getElementById('chat-messages');
+    const el = document.createElement('div');
+    el.className = 'msg bot'; el.id = 'typing-indicator';
+    el.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+  }
+  function removeTyping() { const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
+  async function sendMessage() {
+    if (isTyping) return;
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = ''; input.style.height = 'auto';
+    document.getElementById('chat-send').disabled = true;
+    document.getElementById('chat-suggestions').style.display = 'none';
+    appendMessage('user', text);
+    chatHistory.push({ role: 'user', content: text });
+    isTyping = true; showTyping();
+    try {
+      const response = await fetch('https://gaurav-chat-api-gaurav404kishore-maxs-projects.vercel.app/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory })
+      });
+      const data = await response.json();
+      const reply = data.reply || "Sorry, couldn't process that.";
+      removeTyping();
+      appendMessage('bot', reply);
+      chatHistory.push({ role: 'assistant', content: reply });
+    } catch (err) {
+      removeTyping();
+      appendMessage('bot', "Something went wrong. Try again in a moment.");
+    }
+    isTyping = false;
+    document.getElementById('chat-send').disabled = false;
+    input.focus();
+  }
 </script>
 
 <!-- RESUME MODAL -->
@@ -1097,7 +1070,7 @@
     <input class="resume-email-input" type="email" id="requester-email" placeholder="you@company.com" oninput="updateMailto()"/>
     <div class="resume-preview">
       <div class="resume-preview-label">Message preview</div>
-      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c0513090e3c19111d1510521f1311">[email&#160;protected]</a></span></div>
+      <div class="resume-preview-text">Hi Gaurav, I came across your portfolio and would like to request your resume. Please share it at your convenience.<br><br>— <span id="preview-from">your@email.com</span></div>
     </div>
     <button class="resume-send-btn" onclick="sendResumeRequest()">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -1106,78 +1079,62 @@
     <div class="resume-note">Opens your email app with everything pre-filled.</div>
   </div>
 </div>
-<!-- ASK GAURAV — AI Chat -->
-<style>
-  /* CHAT BUTTON */
-  .chat-fab { position: fixed; bottom: 28px; right: 28px; z-index: 8000; display: flex; align-items: center; gap: 10px; background: var(--ink); color: var(--paper); font-family: var(--sans); font-size: 13px; font-weight: 600; padding: 14px 22px; border-radius: 100px; border: none; cursor: pointer; box-shadow: 0 8px 32px rgba(0,0,0,0.28); transition: all 0.2s; }
-  .chat-fab:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.32); }
-  .chat-fab svg { width: 16px; height: 16px; flex-shrink: 0; }
-  .chat-fab .chat-fab-dot { width: 8px; height: 8px; background: #2ECC71; border-radius: 50%; flex-shrink: 0; animation: livepulse 1.4s ease-in-out infinite; }
 
-  /* CHAT OVERLAY */
+<!-- CHAT STYLES -->
+<style>
+  .chat-fab { position: fixed; bottom: 28px; right: 28px; z-index: 8000; display: flex; align-items: center; gap: 10px; background: var(--ink); color: var(--paper); font-family: var(--sans); font-size: 13px; font-weight: 600; padding: 14px 22px; border-radius: 100px; border: none; cursor: pointer; box-shadow: 0 8px 32px rgba(0,0,0,0.28); transition: all 0.2s; }
+  .chat-fab:hover { background: var(--accent); transform: translateY(-2px); }
+  .chat-fab svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .chat-fab-dot { width: 8px; height: 8px; background: #2ECC71; border-radius: 50%; flex-shrink: 0; animation: livepulse 1.4s ease-in-out infinite; }
   .chat-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.5); z-index: 9000; display: flex; align-items: flex-end; justify-content: flex-end; padding: 0; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
   .chat-overlay.open { opacity: 1; pointer-events: all; }
-
-  /* CHAT WINDOW */
   .chat-window { width: 380px; height: 580px; background: var(--paper); border-radius: 20px 20px 0 0; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1); overflow: hidden; margin-right: 28px; box-shadow: 0 -8px 40px rgba(0,0,0,0.2); }
   .chat-overlay.open .chat-window { transform: translateY(0); }
-  @media (max-width: 480px) { .chat-window { width: 100%; margin-right: 0; height: 70vh; border-radius: 20px 20px 0 0; } }
-
-  /* CHAT HEADER */
+  @media (max-width: 480px) { .chat-window { width: 100%; margin-right: 0; height: 70vh; } }
   .chat-header { background: var(--ink); padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .chat-header-left { display: flex; align-items: center; gap: 10px; }
   .chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0; }
-  .chat-header-info { display: flex; flex-direction: column; }
-  .chat-header-name { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--paper); }
+  .chat-header-name { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--paper); display: block; }
   .chat-header-status { font-family: var(--sans); font-size: 10px; color: #7A6E58; display: flex; align-items: center; gap: 4px; }
   .chat-header-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#2ECC71; display:inline-block; }
-  .chat-close { background: none; border: none; cursor: pointer; color: #5A5040; padding: 4px; display: flex; align-items: center; justify-content: center; transition: color 0.15s; }
+  .chat-close { background: none; border: none; cursor: pointer; color: #5A5040; padding: 4px; display: flex; }
   .chat-close:hover { color: var(--paper); }
   .chat-close svg { width: 16px; height: 16px; }
-
-  /* MESSAGES */
   .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
-  .chat-messages::-webkit-scrollbar { width: 4px; }
-  .chat-messages::-webkit-scrollbar-track { background: transparent; }
-  .chat-messages::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
   .msg { display: flex; flex-direction: column; max-width: 85%; }
   .msg.user { align-self: flex-end; align-items: flex-end; }
-  .msg.bot { align-self: flex-start; align-items: flex-start; }
+  .msg.bot { align-self: flex-start; }
   .msg-bubble { padding: 10px 14px; border-radius: 14px; font-family: var(--sans); font-size: 13px; line-height: 1.6; }
   .msg.user .msg-bubble { background: var(--ink); color: var(--paper); border-radius: 14px 14px 4px 14px; }
   .msg.bot .msg-bubble { background: var(--paper-dark); color: var(--ink); border-radius: 14px 14px 14px 4px; }
   .msg-time { font-size: 10px; color: var(--muted); margin-top: 3px; padding: 0 4px; }
-
-  /* TYPING INDICATOR */
   .typing-indicator { display: flex; gap: 4px; align-items: center; padding: 12px 14px; background: var(--paper-dark); border-radius: 14px 14px 14px 4px; width: fit-content; }
   .typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: typingBounce 1.2s ease-in-out infinite; }
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
   .typing-dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes typingBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
-
-  /* SUGGESTED QUESTIONS */
   .chat-suggestions { padding: 0 16px 8px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
   .suggestion-pill { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-pale); border: 1px solid #E8C4A8; border-radius: 20px; padding: 5px 12px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
   .suggestion-pill:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-  /* INPUT */
   .chat-input-wrap { padding: 12px 16px; border-top: 1px solid var(--rule); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; background: var(--paper); }
-  .chat-input { flex: 1; font-family: var(--sans); font-size: 13px; color: var(--ink); background: var(--paper-dark); border: 1px solid var(--rule); border-radius: 12px; padding: 10px 14px; outline: none; resize: none; min-height: 40px; max-height: 100px; line-height: 1.5; transition: border-color 0.15s; }
+  .chat-input { flex: 1; font-family: var(--sans); font-size: 13px; color: var(--ink); background: var(--paper-dark); border: 1px solid var(--rule); border-radius: 12px; padding: 10px 14px; outline: none; resize: none; min-height: 40px; max-height: 100px; line-height: 1.5; }
   .chat-input:focus { border-color: var(--ink); }
   .chat-input::placeholder { color: var(--muted); }
   .chat-send { width: 36px; height: 36px; background: var(--ink); border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
   .chat-send:hover { background: var(--accent); }
   .chat-send:disabled { background: var(--rule); cursor: not-allowed; }
   .chat-send svg { width: 14px; height: 14px; color: var(--paper); }
+  .resume-modal-overlay { position: fixed; inset: 0; background: rgba(26,20,8,0.55); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  .resume-modal-overlay.open { opacity: 1; pointer-events: all; }
 </style>
 
-<!-- FAB BUTTON -->
+<!-- CHAT FAB -->
 <button class="chat-fab" onclick="openChat()" id="chat-fab">
   <div class="chat-fab-dot"></div>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
   <div style="display:flex;flex-direction:column;align-items:flex-start;gap:1px;">
     <span style="font-size:13px;font-weight:700;line-height:1.2;">Ask Gaurav anything</span>
-    <span style="font-size:9px;font-weight:400;opacity:0.6;letter-spacing:0.03em;">Personally trained · Powered by Claude</span>
+    <span style="font-size:9px;font-weight:400;opacity:0.6;letter-spacing:0.03em;">Personally trained · Powered by Gemini</span>
   </div>
 </button>
 
@@ -1187,205 +1144,28 @@
     <div class="chat-header">
       <div class="chat-header-left">
         <div class="chat-avatar">G</div>
-        <div class="chat-header-info">
+        <div>
           <span class="chat-header-name">Gaurav Kishore</span>
-          <span class="chat-header-status">Powered by Claude · Ask me anything</span>
+          <span class="chat-header-status">Powered by Gemini · Ask me anything</span>
         </div>
       </div>
-      <button class="chat-close" onclick="closeChat()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
+      <button class="chat-close" onclick="closeChat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-
     <div class="chat-messages" id="chat-messages">
-      <div class="msg bot">
-        <div class="msg-bubble">Hey! I'm Gaurav — ask me anything about my work, projects, background, or how I think about product. Happy to answer.</div>
-        <div class="msg-time">Just now</div>
-      </div>
+      <div class="msg bot"><div class="msg-bubble">Hey! I'm Gaurav — ask me anything about my work, projects, background, or how I think about product. Happy to answer.</div><div class="msg-time">Just now</div></div>
     </div>
-
     <div class="chat-suggestions" id="chat-suggestions">
       <div class="suggestion-pill" onclick="askSuggestion(this)">What have you built?</div>
       <div class="suggestion-pill" onclick="askSuggestion(this)">Tell me about your AI work</div>
       <div class="suggestion-pill" onclick="askSuggestion(this)">What's your biggest win?</div>
       <div class="suggestion-pill" onclick="askSuggestion(this)">Are you open to work?</div>
     </div>
-
     <div class="chat-input-wrap">
       <textarea class="chat-input" id="chat-input" placeholder="Ask me anything…" rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="chat-send" id="chat-send" onclick="sendMessage()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </button>
+      <button class="chat-send" id="chat-send" onclick="sendMessage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
     </div>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const GAURAV_SYSTEM_PROMPT = `You are Gaurav Kishore, a Senior Product Manager currently at AB InBev GCC India. You are responding to visitors on your personal portfolio website. Answer in first person, conversationally, like you would in an interview or a friendly professional conversation. Be warm, direct, and specific — avoid generic PM buzzwords. Keep answers concise but substantive.
-
-Here is everything about you:
-
-PROFESSIONAL SUMMARY
-Senior Product and Strategy Manager with 4+ years building and scaling products across fintech, multi-market ecommerce, consumer apps, and AI platforms. Track record of defining product strategy, scoping and launching new revenue verticals, and driving measurable outcomes across global operations. Experienced in go-to-market strategy, competitive intelligence, financial product design, and cross-functional execution at pace. MBA from IIM Nagpur, B.Tech from BIT Sindri.
-
-CURRENT ROLE — AB InBev GCC India (Oct 2025 – Present)
-- Defining product strategy and roadmap for a GenAI-powered experimentation platform across 10+ global markets
-- Scaled platform from 100 to 1,000+ users in 3 months by identifying friction, redefining onboarding, building self-serve workflows
-- Launched LLM-based test generation and failure diagnostics — cut experiment time by 70%
-- Aligning engineering and data science stakeholders across geographies to deliver the roadmap
-- You cannot share confidential details about this role
-
-PREVIOUS ROLE — Group Bayport (Sep 2023 – Oct 2025)
-- Defined product strategy across a $60M revenue portfolio operating in 5 markets — UK, US, AUS, and beyond
-- Scoped and launched insurance as a net-new revenue vertical — defined product proposition, commercial model, and GTM from scratch; $500K in 60 days, 42% adoption
-- Tracked competitive dynamics across markets and fed intelligence into roadmap prioritisation and pricing strategy
-- Defined localisation strategy for multi-country expansion — adapting checkout, payments, and discovery to each market
-- Ran 30+ A/B experiments using data and customer feedback as primary inputs — improved conversion 9% YoY
-- Managed a team of 4 APMs
-
-PREVIOUS ROLE — Airtel Digital (Jul 2022 – Sep 2023)
-- Owned end-to-end product strategy for Airtel Finance — a fintech platform within India's largest telecom app (375M+ subscribers)
-- Scoped and launched three financial verticals: Gold SIP, fixed deposits, and MF-backed loans
-- Defined product proposition and go-to-market approach for each vertical — 500K active financial users, 1.8M installs
-- Analysed competitive fintech landscape to inform product roadmap and identify gaps
-- Rebuilt financial activation funnel end-to-end — KYC 40%→65%, bank linking 35%→60%
-- Built compliance-first products in partnership with risk, legal, and NBFC partners under RBI guidelines
-
-PREVIOUS ROLE — Swiggy (Aug 2021 – Jul 2022)
-- Defined category growth strategy for grocery and F&V verticals — DAU 7×, AOV 2.5×
-- Launched brand monetisation as a net-new revenue stream — offers, sampling, in-app placements — 3% of overall revenue
-- Improved search relevance and ranking using customer behaviour signals — add-to-cart up 31%
-- Built demand shaping infrastructure for COVID-era traffic spikes — revenue up 15%
-- Scaled vendor catalogue platform from 300 to 5,000+ SKUs across 6 cities
-
-SIDE PROJECTS
-1. NearBy (gaurav404kishore-max.github.io/Nearby/) — Utility finder app. Google shows where ATMs are, not what they do. NearBy shows ATMs, petrol pumps, pharmacies by capability (cash deposit, cardless, CNG, 24hrs). Built because you personally walked to an ATM that didn't support cash deposit. Uses OpenStreetMap + Overpass API, all free/open source.
-2. Clear Notes (clear-notes.netlify.app) — Dead-simple notes app with biometric login, colour-coded cards, reminders. Built for people who find other apps overwhelming. No folders, no tags, just write it and get reminded.
-3. FitLog (fitelo.netlify.app) — Fitness tracker with AI cardio parsing. Paste your run summary, AI extracts the numbers. Dark mode first because gym lighting. Built because manual cardio logging was too much friction.
-
-PRODUCT PHILOSOPHY
-- Stay in the problem longer than feels comfortable. Most product decisions go wrong not at execution, but when the problem wasn't understood well enough.
-- Solutions come in versions. The right problem, if you've found it, tends to stay constant.
-- Every feature that adds noise to a product is a failure of product thinking. Subtraction is harder than addition.
-- You build things to solve real problems, not to demonstrate technical ability.
-
-PERSONAL
-- Grew up in Ranchi, Jharkhand. The hills were always close.
-- Based in Bengaluru now.
-- Drawn to mountains when you can get away.
-- Genuinely excited about AI — not as a buzzword but as a genuine shift in how products work.
-- You prefer direct, honest conversations over polished corporate speak.
-
-SKILLS
-Product: Strategy & roadmapping, New vertical launches, Go-to-market strategy, Competitive intelligence, Market analysis, User research, Agile/Scrum, Prioritisation frameworks
-Growth: A/B & multivariate testing, Acquisition & retention, Funnel optimisation, CLM platforms, Personalisation
-Data: SQL, Tableau/Power BI, Google & Adobe Analytics, Adobe Target, VWO, Mixpanel
-AI & Building: GenAI/LLMs, Prompt engineering, HTML/CSS/JS, Supabase, GitHub, Netlify, Figma
-
-CONTACT
-- Email: gaurav202kishore@gmail.com
-- LinkedIn: linkedin.com/in/gaurav202kishore
-- GitHub: github.com/gaurav404kishore-max
-- Portfolio: gauravkishore.netlify.app
-
-OPENNESS TO WORK
-You are actively looking for Senior PM and Strategy & Operations roles, particularly in fintech, consumer apps, or growth-stage technology companies. You are especially interested in roles that involve defining product strategy, launching new verticals, and operating across multiple markets.
-
-IMPORTANT RULES:
-- Always answer in first person as Gaurav
-- Be conversational and warm, not robotic
-- Keep answers focused and specific — no waffle
-- If asked about confidential work details at AB InBev, politely say you can't share specifics of the current role
-- If asked for your resume, direct them to click the "Get my resume" button on the portfolio
-- Never make up facts. If you don't know something, say so honestly.`;
-
-  let chatHistory = [];
-  let chatOpen = false;
-  let isTyping = false;
-
-  function openChat() {
-    document.getElementById('chat-overlay').classList.add('open');
-    document.getElementById('chat-fab').style.display = 'none';
-    chatOpen = true;
-    setTimeout(() => document.getElementById('chat-input').focus(), 400);
-  }
-
-  function closeChat() {
-    document.getElementById('chat-overlay').classList.remove('open');
-    document.getElementById('chat-fab').style.display = 'flex';
-    chatOpen = false;
-  }
-
-  function closeChatOnBg(e) {
-    if (e.target === document.getElementById('chat-overlay')) closeChat();
-  }
-
-  function askSuggestion(el) {
-    const text = el.textContent;
-    document.getElementById('chat-suggestions').style.display = 'none';
-    document.getElementById('chat-input').value = text;
-    sendMessage();
-  }
-
-  function handleChatKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  }
-
-  function autoResize(el) {
-    el.style.height = 'auto';
-    el.style.height = Math.min(el.scrollHeight, 100) + 'px';
-  }
-
-  function appendMessage(role, text) {
-    const messages = document.getElementById('chat-messages');
-    const msg = document.createElement('div');
-    msg.className = 'msg ' + role;
-    const now = new Date();
-    const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-    msg.innerHTML = `<div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div><div class="msg-time">${time}</div>`;
-    messages.appendChild(msg);
-    messages.scrollTop = messages.scrollHeight;
-    return msg;
-  }
-
-  function showTyping() {
-    const messages = document.getElementById('chat-messages');
-    const el = document.createElement('div');
-    el.className = 'msg bot';
-    el.id = 'typing-indicator';
-    el.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-    messages.appendChild(el);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  function removeTyping() {
-    const el = document.getElementById('typing-indicator');
-    if (el) el.remove();
-  }
-
-  async function sendMessage() {
-    if (isTyping) return;
-    const input = document.getElementById('chat-input');
-    const text = input.value.trim();
-    if (!text) return;
-
-    input.value = '';
-    input.style.height = 'auto';
-    document.getElementById('chat-send').disabled = true;
-    document.getElementById('chat-suggestions').style.display = 'none';
-
-    appendMessage('user', text);
-    chatHistory.push({ role: 'user', content: text });
-
-    isTyping = true;
-    showTyping();
-
-    try {
-      const response = await fetch('https://gaurav-chat-api-gaurav404kishore-maxs-projects.vercel.app/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: chatHistory })
-      });
-
-      const data = await response.json();
-      const reply = data.reply ||
+</body>
+</html>
