@@ -988,12 +988,24 @@
   }
 
   // Chat
-  let chatHistory = [], chatOpen = false, isTyping = false;
+  const PIPEDREAM_URL = 'https://eo631ud7qqduiu6.m.pipedream.net';
+  const MSG_LIMIT = 7;
+  let chatHistory = [], chatOpen = false, isTyping = false, userEmail = '', messageCount = 0;
+
   function openChat() {
+    // Show email gate if no email yet
+    if (!userEmail) {
+      document.getElementById('chat-email-gate').style.display = 'flex';
+      document.getElementById('chat-main').style.display = 'none';
+      setTimeout(() => document.getElementById('gate-email-input').focus(), 400);
+    } else {
+      document.getElementById('chat-email-gate').style.display = 'none';
+      document.getElementById('chat-main').style.display = 'flex';
+      setTimeout(() => document.getElementById('chat-input').focus(), 400);
+    }
     document.getElementById('chat-overlay').classList.add('open');
     document.getElementById('chat-fab').style.display = 'none';
     chatOpen = true;
-    setTimeout(() => document.getElementById('chat-input').focus(), 400);
   }
   function closeChat() {
     document.getElementById('chat-overlay').classList.remove('open');
@@ -1001,6 +1013,28 @@
     chatOpen = false;
   }
   function closeChatOnBg(e) { if (e.target === document.getElementById('chat-overlay')) closeChat(); }
+
+  function submitEmail() {
+    const emailInput = document.getElementById('gate-email-input');
+    const email = emailInput.value.trim();
+    if (!email || !email.includes('@')) {
+      emailInput.style.borderColor = '#C2410C';
+      setTimeout(() => emailInput.style.borderColor = '', 1500);
+      return;
+    }
+    userEmail = email;
+    // Log email capture to Pipedream
+    fetch(PIPEDREAM_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'chat_start', email: userEmail, timestamp: new Date().toISOString() })
+    }).catch(() => {});
+    document.getElementById('chat-email-gate').style.display = 'none';
+    document.getElementById('chat-main').style.display = 'flex';
+    setTimeout(() => document.getElementById('chat-input').focus(), 200);
+  }
+  function handleGateKey(e) { if (e.key === 'Enter') submitEmail(); }
+
   function askSuggestion(el) {
     document.getElementById('chat-suggestions').style.display = 'none';
     document.getElementById('chat-input').value = el.textContent;
@@ -1027,8 +1061,13 @@
     messages.scrollTop = messages.scrollHeight;
   }
   function removeTyping() { const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
+  function showLimitReached() {
+    const wrap = document.getElementById('chat-input-wrap');
+    wrap.innerHTML = '<div style="padding:12px 16px;font-family:var(--sans);font-size:12px;color:var(--muted);text-align:center;line-height:1.6;">You\'ve reached the message limit for this session.<br>Continue the conversation directly — <a href="mailto:gaurav202kishore@gmail.com" style="color:var(--accent);">gaurav202kishore@gmail.com</a> or WhatsApp <a href="https://wa.me/919431752097" style="color:var(--accent);" target="_blank">+91 9431752097</a></div>';
+  }
   async function sendMessage() {
     if (isTyping) return;
+    if (messageCount >= MSG_LIMIT) { showLimitReached(); return; }
     const input = document.getElementById('chat-input');
     const text = input.value.trim();
     if (!text) return;
@@ -1037,24 +1076,26 @@
     document.getElementById('chat-suggestions').style.display = 'none';
     appendMessage('user', text);
     chatHistory.push({ role: 'user', content: text });
+    messageCount++;
     isTyping = true; showTyping();
     try {
       const response = await fetch('https://gaurav-chat-api.vercel.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: chatHistory })
+        body: JSON.stringify({ messages: chatHistory, email: userEmail, messageNum: messageCount })
       });
       const data = await response.json();
       const reply = data.reply || "Sorry, couldn't process that.";
       removeTyping();
       appendMessage('bot', reply);
       chatHistory.push({ role: 'assistant', content: reply });
+      if (messageCount >= MSG_LIMIT) showLimitReached();
     } catch (err) {
       removeTyping();
       appendMessage('bot', "Something went wrong. Try again in a moment.");
     }
     isTyping = false;
-    document.getElementById('chat-send').disabled = false;
+    if (messageCount < MSG_LIMIT) document.getElementById('chat-send').disabled = false;
     input.focus();
   }
 </script>
@@ -1146,24 +1187,42 @@
         <div class="chat-avatar">G</div>
         <div>
           <span class="chat-header-name">Gaurav Kishore</span>
-          <span class="chat-header-status">Powered by Gemini · Ask me anything</span>
+          <span class="chat-header-status">Powered by Groq · Ask me anything</span>
         </div>
       </div>
       <button class="chat-close" onclick="closeChat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
-    <div class="chat-messages" id="chat-messages">
-      <div class="msg bot"><div class="msg-bubble">Hey! I'm Gaurav — ask me anything about my work, projects, background, or how I think about product. Happy to answer.</div><div class="msg-time">Just now</div></div>
+
+    <!-- EMAIL GATE -->
+    <div id="chat-email-gate" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;gap:16px;background:var(--paper);">
+      <div style="font-family:var(--display);font-size:18px;font-weight:700;color:var(--ink);text-align:center;line-height:1.3;">Before we chat</div>
+      <div style="font-family:var(--sans);font-size:13px;color:var(--muted);text-align:center;line-height:1.6;">Drop your email — I'll see it and may follow up if there's a fit.</div>
+      <input id="gate-email-input" type="email" placeholder="you@company.com" onkeydown="handleGateKey(event)"
+        style="width:100%;font-family:var(--sans);font-size:13px;padding:10px 14px;border:1.5px solid var(--rule);border-radius:10px;background:var(--paper-dark);color:var(--ink);outline:none;transition:border-color 0.15s;">
+      <button onclick="submitEmail()"
+        style="width:100%;font-family:var(--sans);font-size:13px;font-weight:600;color:#F7F1E8;background:var(--ink);border:none;padding:11px;border-radius:10px;cursor:pointer;transition:background 0.15s;">
+        Start chatting →
+      </button>
+      <div style="font-family:var(--sans);font-size:11px;color:var(--faint);text-align:center;">No spam. Just a heads-up that you visited.</div>
     </div>
-    <div class="chat-suggestions" id="chat-suggestions">
-      <div class="suggestion-pill" onclick="askSuggestion(this)">What have you built?</div>
-      <div class="suggestion-pill" onclick="askSuggestion(this)">Tell me about your AI work</div>
-      <div class="suggestion-pill" onclick="askSuggestion(this)">What's your biggest win?</div>
-      <div class="suggestion-pill" onclick="askSuggestion(this)">Are you open to work?</div>
+
+    <!-- MAIN CHAT -->
+    <div id="chat-main" style="flex:1;display:none;flex-direction:column;overflow:hidden;">
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg bot"><div class="msg-bubble">Hey! I'm Gaurav — ask me anything about my work, projects, background, or how I think about product. Happy to answer.</div><div class="msg-time">Just now</div></div>
+      </div>
+      <div class="chat-suggestions" id="chat-suggestions">
+        <div class="suggestion-pill" onclick="askSuggestion(this)">What have you built?</div>
+        <div class="suggestion-pill" onclick="askSuggestion(this)">Tell me about your AI work</div>
+        <div class="suggestion-pill" onclick="askSuggestion(this)">What's your biggest win?</div>
+        <div class="suggestion-pill" onclick="askSuggestion(this)">Are you open to work?</div>
+      </div>
+      <div class="chat-input-wrap" id="chat-input-wrap">
+        <textarea class="chat-input" id="chat-input" placeholder="Ask me anything…" rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="chat-send" id="chat-send" onclick="sendMessage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+      </div>
     </div>
-    <div class="chat-input-wrap">
-      <textarea class="chat-input" id="chat-input" placeholder="Ask me anything…" rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="chat-send" id="chat-send" onclick="sendMessage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-    </div>
+
   </div>
 </div>
 
