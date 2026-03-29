@@ -278,13 +278,6 @@ body {
       </div>
     </div>
 
-    <div class="suggestions" id="suggestions">
-      <div class="suggestion-pill" onclick="askSuggestion(this)">What have you built?</div>
-      <div class="suggestion-pill" onclick="askSuggestion(this)">Tell me about your AI work</div>
-      <div class="suggestion-pill" onclick="askSuggestion(this)">What's your biggest win?</div>
-      <div class="suggestion-pill" onclick="askSuggestion(this)">Are you open to work?</div>
-    </div>
-
     <div class="input-wrap" id="input-wrap">
       <textarea class="chat-input" id="chat-input" placeholder="Ask anything about Gaurav…" rows="1"
         onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}"
@@ -327,7 +320,7 @@ function submitEmail() {
 }
 
 function askSuggestion(el) {
-  document.getElementById('suggestions').style.display = 'none';
+  
   document.getElementById('chat-input').value = el.textContent;
   sendMessage();
 }
@@ -385,7 +378,7 @@ async function sendMessage() {
   if (!text) return;
   input.value = ''; input.style.height = 'auto';
   document.getElementById('send-btn').disabled = true;
-  document.getElementById('suggestions').style.display = 'none';
+  
   appendMessage('user', text);
   chatHistory.push({ role: 'user', content: text });
   messageCount++;
