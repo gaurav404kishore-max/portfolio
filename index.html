@@ -991,7 +991,7 @@
   }
   function sendResumeRequest() {
     const email = document.getElementById('requester-email').value.trim();
-    if (!email || !email.includes('@')) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; if (!email || !emailRegex.test(email)) {
       const inp = document.getElementById('requester-email');
       inp.focus(); inp.style.borderColor = '#C2410C';
       setTimeout(() => inp.style.borderColor = '', 1500);
@@ -1029,16 +1029,41 @@
   }
   function closeChatOnBg(e) { if (e.target === document.getElementById('chat-overlay')) closeChat(); }
 
-  function submitEmail() {
+  async function submitEmail() {
     const emailInput = document.getElementById('gate-email-input');
     const email = emailInput.value.trim();
-    if (!email || !email.includes('@')) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!email || !emailRegex.test(email)) {
       emailInput.style.borderColor = '#C2410C';
-      setTimeout(() => emailInput.style.borderColor = '', 1500);
+      emailInput.placeholder = 'Enter a valid email address';
+      setTimeout(() => { emailInput.style.borderColor = ''; emailInput.placeholder = 'you@company.com'; }, 2000);
       return;
     }
+    // Show checking state
+    const btn = emailInput.nextElementSibling.nextElementSibling;
+    const btnText = btn ? btn.textContent : '';
+    if (btn) { btn.textContent = 'Verifying…'; btn.disabled = true; }
+
+    // MX record check via dns.google (free, no key needed)
+    const domain = email.split('@')[1];
+    try {
+      const resp = await fetch(`https://dns.google/resolve?name=${domain}&type=MX`);
+      const data = await resp.json();
+      const hasMX = data.Answer && data.Answer.length > 0;
+      if (!hasMX) {
+        emailInput.style.borderColor = '#C2410C';
+        emailInput.value = '';
+        emailInput.placeholder = 'Email domain doesn\'t exist — try again';
+        if (btn) { btn.textContent = btnText; btn.disabled = false; }
+        setTimeout(() => { emailInput.style.borderColor = ''; emailInput.placeholder = 'you@company.com'; }, 3000);
+        return;
+      }
+    } catch(e) {
+      // DNS check failed — allow through rather than blocking real users
+    }
+
+    if (btn) { btn.textContent = btnText; btn.disabled = false; }
     userEmail = email;
-    // Log email capture to Pipedream
     fetch(PIPEDREAM_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1234,12 +1259,7 @@
       <div class="chat-messages" id="chat-messages">
         <div class="msg bot"><div class="msg-bubble">Hey! I'm Gaurav — ask me anything about my work, projects, background, or how I think about product. Happy to answer.</div><div class="msg-time">Just now</div></div>
       </div>
-      <div class="chat-suggestions" id="chat-suggestions">
-        <div class="suggestion-pill" onclick="askSuggestion(this)">What have you built?</div>
-        <div class="suggestion-pill" onclick="askSuggestion(this)">Tell me about your AI work</div>
-        <div class="suggestion-pill" onclick="askSuggestion(this)">What's your biggest win?</div>
-        <div class="suggestion-pill" onclick="askSuggestion(this)">Are you open to work?</div>
-      </div>
+      <div id="chat-suggestions"></div>
       <div class="chat-input-wrap" id="chat-input-wrap">
         <textarea class="chat-input" id="chat-input" placeholder="Ask me anything…" rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
         <button class="chat-send" id="chat-send" onclick="sendMessage()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
