@@ -300,14 +300,39 @@ const MSG_LIMIT = 7;
 
 let chatHistory = [], userEmail = '', messageCount = 0, isTyping = false;
 
-function submitEmail() {
+async function submitEmail() {
   const input = document.getElementById('gate-email');
   const email = input.value.trim();
-  if (!email || !email.includes('@')) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!email || !emailRegex.test(email)) {
     input.style.borderColor = '#C2410C';
-    setTimeout(() => input.style.borderColor = '', 1500);
+    input.placeholder = 'Enter a valid email address';
+    setTimeout(() => { input.style.borderColor = ''; input.placeholder = 'you@company.com'; }, 2000);
     return;
   }
+  // Show checking state
+  const btn = document.querySelector('.gate-btn');
+  btn.textContent = 'Verifying…'; btn.disabled = true;
+
+  // MX record check via dns.google (free, no key needed)
+  const domain = email.split('@')[1];
+  try {
+    const resp = await fetch(`https://dns.google/resolve?name=${domain}&type=MX`);
+    const data = await resp.json();
+    const hasMX = data.Answer && data.Answer.length > 0;
+    if (!hasMX) {
+      input.style.borderColor = '#C2410C';
+      input.value = '';
+      input.placeholder = 'Email domain doesn\'t exist — try again';
+      btn.textContent = 'Start chatting →'; btn.disabled = false;
+      setTimeout(() => { input.style.borderColor = ''; input.placeholder = 'you@company.com'; }, 3000);
+      return;
+    }
+  } catch(e) {
+    // DNS check failed — allow through rather than blocking real users
+  }
+
+  btn.textContent = 'Start chatting →'; btn.disabled = false;
   userEmail = email;
   fetch(PIPEDREAM_URL, {
     method: 'POST',
